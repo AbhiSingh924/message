@@ -1,4 +1,11 @@
 /* =====================================
+   SPECIAL LETTER WEBSITE
+   PHASE 1 — PREMIUM POLISH
+   FEATURE 1 — FLOATING HEARTS
+===================================== */
+
+
+/* =====================================
    GET HTML ELEMENTS
 ===================================== */
 
@@ -82,7 +89,6 @@ const readAgainButton =
     document.getElementById("readAgainButton");
 
 
-
 /* =====================================
    SAFETY CHECK
 ===================================== */
@@ -101,7 +107,6 @@ if (
 }
 
 
-
 /* =====================================
    SCREEN NAVIGATION
 ===================================== */
@@ -115,7 +120,6 @@ function showScreen(screenToShow) {
         promiseScreen,
         finalScreen
     ];
-
 
     screens.forEach(function (screen) {
 
@@ -132,6 +136,157 @@ function showScreen(screenToShow) {
 
 }
 
+
+/* =====================================
+   PHASE 1
+   FLOATING HEART SYSTEM
+===================================== */
+
+function createFloatingHeart() {
+
+    const heart =
+        document.createElement("span");
+
+    heart.className =
+        "floating-heart";
+
+    heart.textContent = "♥";
+
+
+    /* Random horizontal position */
+
+    const left =
+        Math.random() * 100;
+
+    heart.style.setProperty(
+        "--left",
+        left + "%"
+    );
+
+
+    /* Random size */
+
+    const size =
+        14 + Math.random() * 14;
+
+    heart.style.setProperty(
+        "--size",
+        size + "px"
+    );
+
+
+    /* Random animation duration */
+
+    const duration =
+        4.5 + Math.random() * 3;
+
+    heart.style.setProperty(
+        "--duration",
+        duration + "s"
+    );
+
+
+    /* Random horizontal movement */
+
+    const drift =
+        -50 + Math.random() * 100;
+
+    heart.style.setProperty(
+        "--drift",
+        drift + "px"
+    );
+
+
+    /* Add to page */
+
+    document.body.appendChild(heart);
+
+
+    /* Remove after animation */
+
+    setTimeout(function () {
+
+        heart.remove();
+
+    }, (duration + 0.5) * 1000);
+
+}
+
+
+/* =====================================
+   CREATE SMALL HEART BURST
+===================================== */
+
+function heartBurst(amount = 5) {
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        setTimeout(function () {
+
+            createFloatingHeart();
+
+        }, i * 180);
+
+    }
+
+}
+
+
+/* =====================================
+   START BACKGROUND HEARTS
+===================================== */
+
+let floatingHeartInterval = null;
+
+
+function startFloatingHearts() {
+
+    if (floatingHeartInterval) {
+        return;
+    }
+
+
+    /* Create occasional hearts */
+
+    floatingHeartInterval =
+        setInterval(function () {
+
+            createFloatingHeart();
+
+        }, 1800);
+
+}
+
+
+/* =====================================
+   STOP BACKGROUND HEARTS
+===================================== */
+
+function stopFloatingHearts() {
+
+    if (!floatingHeartInterval) {
+        return;
+    }
+
+
+    clearInterval(
+        floatingHeartInterval
+    );
+
+    floatingHeartInterval = null;
+
+}
+
+
+/* =====================================
+   START HEART EFFECT
+===================================== */
+
+startFloatingHearts();
 
 
 /* =====================================
@@ -163,11 +318,13 @@ function openEnvelope() {
 
 
     /*
-     * Change the hint
+     * Change hint
      */
 
     const hint =
-        document.querySelector(".envelope-hint");
+        document.querySelector(
+            ".envelope-hint"
+        );
 
 
     if (hint) {
@@ -176,6 +333,13 @@ function openEnvelope() {
             "Opening your letter... ❤️";
 
     }
+
+
+    /*
+     * Small heart burst
+     */
+
+    heartBurst(6);
 
 
     /*
@@ -191,7 +355,9 @@ function openEnvelope() {
 }
 
 
-/* Mouse / Touch */
+/* =====================================
+   MOUSE / TOUCH
+===================================== */
 
 envelope.addEventListener(
     "click",
@@ -199,7 +365,9 @@ envelope.addEventListener(
 );
 
 
-/* Keyboard support */
+/* =====================================
+   KEYBOARD SUPPORT
+===================================== */
 
 envelope.addEventListener(
     "keydown",
@@ -218,7 +386,6 @@ envelope.addEventListener(
 
     }
 );
-
 
 
 /* =====================================
@@ -242,7 +409,6 @@ const moodMessages = {
 let selectedMood = null;
 
 
-
 /* =====================================
    MOOD BUTTONS
 ===================================== */
@@ -262,8 +428,7 @@ moodButtons.forEach(function (button) {
 
 
             /*
-             * Remove selection
-             * from every button
+             * Remove previous selection
              */
 
             moodButtons.forEach(
@@ -287,7 +452,7 @@ moodButtons.forEach(function (button) {
 
 
             /*
-             * Display appropriate message
+             * Display response
              */
 
             moodResponse.textContent =
@@ -295,7 +460,7 @@ moodButtons.forEach(function (button) {
 
 
             /*
-             * Restart animation
+             * Restart response animation
              */
 
             moodResponse.classList.remove(
@@ -313,18 +478,25 @@ moodButtons.forEach(function (button) {
 
 
             /*
-             * Show Continue button
+             * Show continue button
              */
 
             moodContinue.classList.add(
                 "show"
             );
 
+
+            /*
+             * Small heart burst
+
+             */
+
+            heartBurst(3);
+
         }
     );
 
 });
-
 
 
 /* =====================================
@@ -397,7 +569,6 @@ const messages = [
 let currentMessage = 0;
 
 
-
 /* =====================================
    SHOW LETTER
 ===================================== */
@@ -405,15 +576,16 @@ let currentMessage = 0;
 function showLetter() {
 
     /*
-     * Make sure the index
-     * is valid
+     * Validate message index
      */
 
     if (
         currentMessage < 0 ||
         currentMessage >= messages.length
     ) {
+
         return;
+
     }
 
 
@@ -422,7 +594,9 @@ function showLetter() {
      */
 
     const letterCard =
-        document.querySelector(".letter-card");
+        document.querySelector(
+            ".letter-card"
+        );
 
 
     /*
@@ -445,7 +619,7 @@ function showLetter() {
     setTimeout(function () {
 
         /*
-         * Update letter text
+         * Update text
          */
 
         letterText.innerHTML =
@@ -478,13 +652,15 @@ function showLetter() {
 
         /*
          * Update progress
+
          */
 
         updateProgress();
 
 
         /*
-         * Fade letter back in
+         * Fade card back in
+
          */
 
         if (letterCard) {
@@ -499,7 +675,7 @@ function showLetter() {
 
 
     /*
-     * Change button text
+     * Update button text
      */
 
     if (
@@ -520,7 +696,6 @@ function showLetter() {
     }
 
 }
-
 
 
 /* =====================================
@@ -552,7 +727,6 @@ function updateProgress() {
 }
 
 
-
 /* =====================================
    PROMISE SYSTEM
 ===================================== */
@@ -571,9 +745,8 @@ const promiseMessages = {
 let selectedPromise = null;
 
 
-
 /* =====================================
-   RESET PROMISE SCREEN
+   RESET PROMISE
 ===================================== */
 
 function resetPromise() {
@@ -582,7 +755,7 @@ function resetPromise() {
 
 
     /*
-     * Remove selected state
+     * Remove selections
      */
 
     promiseButtons.forEach(
@@ -602,7 +775,8 @@ function resetPromise() {
 
     if (promiseResponse) {
 
-        promiseResponse.textContent = "";
+        promiseResponse.textContent =
+            "";
 
         promiseResponse.classList.remove(
             "show"
@@ -612,7 +786,8 @@ function resetPromise() {
 
 
     /*
-     * Hide continue button
+     * Hide continue
+
      */
 
     if (promiseContinue) {
@@ -626,135 +801,149 @@ function resetPromise() {
 }
 
 
-
 /* =====================================
-   SHOW PROMISE SCREEN
+   SHOW PROMISE
 ===================================== */
 
 function showPromise() {
 
-    /*
-     * Reset everything
-     */
-
     resetPromise();
-
-
-    /*
-     * Show Promise screen
-     */
 
     showScreen(promiseScreen);
 
-}
+    heartBurst(5);
 
+}
 
 
 /* =====================================
    PROMISE BUTTONS
 ===================================== */
 
-promiseButtons.forEach(function (button) {
+promiseButtons.forEach(
+    function (button) {
 
-    button.addEventListener(
-        "click",
-        function () {
+        button.addEventListener(
+            "click",
+            function () {
 
-            /*
-             * Get selected promise
-             */
+                /*
+                 * Get promise
+                 */
 
-            selectedPromise =
-                button.dataset.promise;
-
-
-            /*
-             * Remove previous selection
-             */
-
-            promiseButtons.forEach(
-                function (item) {
-
-                    item.classList.remove(
-                        "selected"
-                    );
-
-                }
-            );
-
-
-            /*
-             * Select current button
-             */
-
-            button.classList.add(
-                "selected"
-            );
-
-            const promiseContent = document.querySelector(".promise-content");
-
-            if (promiseContent) {
-
-                promiseContent.classList.remove(
-                    "promise-made"
-                );
-
-                void promiseContent.offsetWidth;
-
-                promiseContent.classList.add(
-                    "promise-made"
-                );
-
-            }
-
-
-            /*
-             * Display response
-             */
-
-            if (promiseResponse) {
-
-                promiseResponse.textContent =
-                    promiseMessages[selectedPromise];
+                selectedPromise =
+                    button.dataset.promise;
 
 
                 /*
-                 * Restart animation
+                 * Remove previous selection
                  */
 
-                promiseResponse.classList.remove(
-                    "show"
+                promiseButtons.forEach(
+                    function (item) {
+
+                        item.classList.remove(
+                            "selected"
+                        );
+
+                    }
                 );
 
 
-                setTimeout(function () {
+                /*
+                 * Select current button
+                 */
 
-                    promiseResponse.classList.add(
+                button.classList.add(
+                    "selected"
+                );
+
+
+                /*
+                 * Promise animation
+
+                 */
+
+                const promiseContent =
+                    document.querySelector(
+                        ".promise-content"
+                    );
+
+
+                if (promiseContent) {
+
+                    promiseContent.classList.remove(
+                        "promise-made"
+                    );
+
+
+                    void promiseContent.offsetWidth;
+
+
+                    promiseContent.classList.add(
+                        "promise-made"
+                    );
+
+                }
+
+
+                /*
+                 * Display response
+                 */
+
+                if (promiseResponse) {
+
+                    promiseResponse.textContent =
+                        promiseMessages[
+                            selectedPromise
+                        ];
+
+
+                    promiseResponse.classList.remove(
                         "show"
                     );
 
-                }, 50);
+
+                    setTimeout(
+                        function () {
+
+                            promiseResponse.classList.add(
+                                "show"
+                            );
+
+                        },
+                        50
+                    );
+
+                }
+
+
+                /*
+                 * Show continue
+
+                 */
+
+                if (promiseContinue) {
+
+                    promiseContinue.classList.add(
+                        "show"
+                    );
+
+                }
+
+
+                /*
+                 * Heart burst
+                 */
+
+                heartBurst(4);
 
             }
 
+        );
 
-            /*
-             * Show continue button
-             */
-
-            if (promiseContinue) {
-
-                promiseContinue.classList.add(
-                    "show"
-                );
-
-            }
-
-        }
-    );
-
-});
-
+    }
+);
 
 
 /* =====================================
@@ -766,8 +955,7 @@ moodContinue.addEventListener(
     function () {
 
         /*
-         * Don't continue
-         * without selecting a mood
+         * Require mood selection
          */
 
         if (!selectedMood) {
@@ -777,14 +965,13 @@ moodContinue.addEventListener(
 
         /*
          * Reset letter
-
          */
 
         currentMessage = 0;
 
 
         /*
-         * Show letter screen
+         * Show letter
          */
 
         showScreen(letterScreen);
@@ -792,14 +979,19 @@ moodContinue.addEventListener(
 
         /*
          * Display first message
-
          */
 
         showLetter();
 
+
+        /*
+         * Small heart burst
+         */
+
+        heartBurst(5);
+
     }
 );
-
 
 
 /* =====================================
@@ -811,45 +1003,40 @@ nextButton.addEventListener(
     function () {
 
         /*
-         * IMPORTANT:
-         *
-         * currentMessage === 2 means
-         * the user is currently reading
-         * page 3.
-         *
-         * Instead of going directly
-         * to page 4, show Promise screen.
+         * Page 3 -> Promise
          */
 
         if (currentMessage === 2) {
 
             /*
-             * Page 4 is waiting
-             * after the Promise moment
+             * Page 4 waits
+             * after promise
              */
 
             currentMessage = 3;
 
 
             /*
-             * Show Promise screen
+             * Show promise
+
              */
 
             showPromise();
 
             return;
+
         }
 
 
         /*
-         * Move to next message
+         * Move forward
          */
 
         currentMessage++;
 
 
         /*
-         * More messages available
+         * More messages
          */
 
         if (
@@ -858,6 +1045,8 @@ nextButton.addEventListener(
         ) {
 
             showLetter();
+
+            heartBurst(3);
 
         }
 
@@ -870,11 +1059,12 @@ nextButton.addEventListener(
 
             showScreen(finalScreen);
 
+            heartBurst(8);
+
         }
 
     }
 );
-
 
 
 /* =====================================
@@ -886,8 +1076,7 @@ promiseContinue.addEventListener(
     function () {
 
         /*
-         * Make sure a promise
-         * option was selected
+         * Require selection
          */
 
         if (!selectedPromise) {
@@ -896,15 +1085,14 @@ promiseContinue.addEventListener(
 
 
         /*
-         * Page 4 is already selected
-         * as currentMessage = 3
+         * Page 4
          */
 
         currentMessage = 3;
 
 
         /*
-         * Show letter screen
+         * Show letter
          */
 
         showScreen(letterScreen);
@@ -916,9 +1104,15 @@ promiseContinue.addEventListener(
 
         showLetter();
 
+
+        /*
+         * Heart burst
+         */
+
+        heartBurst(5);
+
     }
 );
-
 
 
 /* =====================================
@@ -930,7 +1124,8 @@ readAgainButton.addEventListener(
     function () {
 
         /*
-         * Start letter from beginning
+         * Start again from letter
+
          */
 
         currentMessage = 0;
@@ -951,5 +1146,22 @@ readAgainButton.addEventListener(
 
         showLetter();
 
+
+        /*
+         * Heart burst
+
+         */
+
+        heartBurst(5);
+
     }
 );
+
+
+/* =====================================
+   INITIAL STATE
+===================================== */
+
+currentMessage = 0;
+
+updateProgress();
