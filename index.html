@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A little something for a special friend.">
+    <title>A Little Something For You ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="app">
+        <section id="welcomeScreen" class="screen active">
+            <div class="welcome-content">
+                <div class="heart" aria-hidden="true">💌</div>
+                <p class="eyebrow">
+                    A little something for you
+                </p>
+                <h1>
+                    Hey, my cute friend ❤️
+                </h1>
+                <p class="intro-text">
+                    I made this little something for you.
+                </p>
+                <p class="intro-text">
+                    Open it whenever you need a reminder
+                    that someone is always wishing the
+                    best for you.
+                </p>
+                <div class="envelope-container" id="envelope" role="button" tabindex="0" aria-label="Open the letter">
+                    <div class="envelope">
+
+                        <div class="envelope-back" aria-hidden="true"></div>
+                        <div class="letter-paper" aria-hidden="true">
+                            <span> For you ❤️ </span>
+                        </div>
+
+                        <div class="envelope-front" aria-hidden="true"></div>
+                        <div class="envelope-flap" aria-hidden="true"></div>
+                        <div class="envelope-heart" aria-hidden="true">❤️</div>
+
+                    </div>
+                </div>
+
+                <p class="envelope-hint">
+                    Tap the envelope to open it 💌
+                </p>
+                <p class="small-note">
+                    Take your time. There's no rush. 🌷
+                </p>
+            
+            </div>
+        </section>
+
+        <section id="moodScreen" class="screen">
+
+            <div class="mood-content">
+                <div class="heart" aria-hidden="true">🌷</div>
+
+                <p class="eyebrow"> Before you continue </p>
+                <h2> How are you feeling right now? </h2>
+                <p class="intro-text"> There isn't a right answer. Just pick whatever feels closest. </p>
+                <div class="mood-buttons">
+                    <button type="button" class="mood-button" data-mood="sad">
+                        <span" class="mood-emoji" aria-hidden="true">😔 </span>
+                        <span class="mood-label"> Not feeling great </span>
+                    </button>
+                    <button type="button" class="mood-button" data-mood="okay" >
+                        <span class="mood-emoji" aria-hidden="true" > 😐 </span>
+                        <span class="mood-label"> Just okay </span>
+                    </button>
+                    <button type="button" class="mood-button" data-mood="happy" >
+                        <span class="mood-emoji" aria-hidden="true" > 😊 </span>
+                        <span class="mood-label"> I'm doing fine </span>
+                    </button>
+                </div>
+                <p id="moodResponse" class="mood-response" aria-live="polite" ></p>
+                <button id="moodContinue" class="primary-button mood-continue" type="button" > Continue ❤️ </button>
+            </div>
+        </section>
+
+        <section id="letterScreen" class="screen" >
+            <div class="letter-content">
+                <p class="eyebrow"> A little reminder </p>
+                <h2> For you ❤️ </h2>
+                <div class="letter-progress" aria-label="Letter progress">
+                    <div id="letterProgress" class="letter-progress-bar"></div>
+                </div>
+                <div class="letter-wrapper">
+                    <div class="letter-page-number">
+                        <span id="pageNumber">1</span>
+                        /
+                        <span id="totalPages">5</span>
+                    </div>
+                    <div class="letter-card" id="letterCard" >
+
+                        <div class="letter-decoration" aria-hidden="true" > ✦ </div>
+                        <p id="letterText" aria-live="polite" >
+                            Your message will appear here.
+                        </p>
+                        <div class="letter-decoration bottom" aria-hidden="true" > ✦ </div>
+                    </div>
+                </div>
+                <button id="nextButton" class="primary-button" type="button" > Keep Reading ❤️ </button>
+            </div>
+        </section>
+        <section id="promiseScreen" class="screen">
+            <div class="promise-content">
+                <div class="promise-icon" aria-hidden="true" > 🫶 </div>
+                <p class="eyebrow"> Okay, one tiny promise... </p>
+                <h2> Can you promise me something? 🌷 </h2>
+                <p class="promise-text"> Promise me you'll be a little kinder to yourself? </p>
+                <p class="promise-subtext"> You deserve the same kindness and patience that you give to everyone else. </p>
+                <div class="promise-buttons">
+                    <button type="button" class="promise-button" data-promise="promise">
+                        <span class="promise-emoji" aria-hidden="true"> ❤️ </span>
+                        <span> I promise </span>
+                    </button>
+                    <button type="button" class="promise-button" data-promise="try" >
+                        <span class="promise-emoji" aria-hidden="true" > 🥹 </span>
+                        <span> I'll try </span>
+                    </button>
+                </div>
+                <p id="promiseResponse" class="promise-response" aria-live="polite"></p>
+                <button id="promiseContinue" class="primary-button promise-continue" type="button" > Continue ❤️ </button>
+            </div>
+        </section>
+        <section id="finalScreen" class="screen" >
+            <div class="final-content">
+                <div class="heart" aria-hidden="true" > 🫶 </div>
+                <p class="eyebrow"> One last thing </p>
+                <h2> That's all I wanted to say. </h2>
+                <div class="final-card">
+                    <h3> Whatever happens, don't forget... </h3>
+                    <p> You are special. ❤️ </p> 
+                    <p> Take care of yourself. </p> 
+                    <p> Keep smiling. </p>
+                    <p> Better days are coming. ✨ </p>
+                    <p class="signature"> — Abhi </p>
+                </div>
+                <button id="readAgainButton" class="primary-button" type="button" > Read Again 💌 </button>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
