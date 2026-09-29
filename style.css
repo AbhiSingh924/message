@@ -1,105 +1,60 @@
-/* =====================================
+/* =========================================================
    SPECIAL LETTER WEBSITE
-   PHASE 1 — PREMIUM POLISH
-   FEATURE 1 — FLOATING HEARTS
-===================================== */
+   COMPLETE CLEAN STYLE.CSS
+   ========================================================= */
 
 
-/* =====================================
-   GOOGLE FONTS
-===================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&display=swap');
-
-
-/* =====================================
+/* =========================================================
    RESET
-===================================== */
+   ========================================================= */
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
-
-
-/* =====================================
-   ROOT
-===================================== */
 
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
     min-height: 100vh;
-    min-height: 100svh;
-
-    font-family:
-        "Segoe UI",
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        sans-serif;
-
-    color: #3d3033;
-
-    background:
-        #fff7f8;
-
     overflow-x: hidden;
+
+    font-family: "Patrick Hand", cursive;
+
+    color: #514047;
+    background: #fff8f7;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-
-/* =====================================
-   BUTTON RESET
-===================================== */
-
-button {
+button,
+input,
+textarea {
     font: inherit;
 }
 
-
-button,
-[role="button"] {
+button {
     -webkit-tap-highlight-color: transparent;
 }
 
-
-button:focus-visible,
-[role="button"]:focus-visible {
-    outline:
-        3px solid
-        rgba(214, 105, 132, 0.28);
-
+button:focus-visible {
+    outline: 3px solid rgba(207, 120, 145, 0.35);
     outline-offset: 4px;
 }
 
 
-/* =====================================
-   MAIN APP
-===================================== */
+/* =========================================================
+   SCREEN SYSTEM
+   ========================================================= */
 
-.app {
+.screen {
     position: relative;
 
     width: 100%;
-
-    min-height: 100vh;
-    min-height: 100svh;
-
-    overflow: hidden;
-}
-
-
-/* =====================================
-   SCREEN SYSTEM
-===================================== */
-
-.screen {
-    width: 100%;
-
     min-height: 100vh;
     min-height: 100svh;
 
@@ -108,538 +63,333 @@ button:focus-visible,
     align-items: center;
     justify-content: center;
 
-    position: relative;
+    padding: 50px 24px;
 
-    padding:
-        40px 20px;
+    overflow: hidden;
 }
-
 
 .screen.active {
     display: flex;
-
-    animation:
-        screenIn
-        0.65s
-        ease
-        both;
 }
 
-
-/* =====================================
-   CONTENT WIDTH
-===================================== */
-
-.welcome-content,
-.mood-content,
-.letter-content,
-.promise-content,
-.final-content {
+.app {
     width: 100%;
-
-    max-width: 680px;
-
-    margin: 0 auto;
-
-    text-align: center;
 }
 
 
-/* =====================================
-   TYPOGRAPHY
-===================================== */
+/* =========================================================
+   COMMON TYPOGRAPHY
+   ========================================================= */
 
 .eyebrow {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 
-    font-size: 0.78rem;
+    font-family: "Patrick Hand", cursive;
 
-    font-weight: 700;
+    font-size: 1.05rem;
+    font-weight: 400;
 
-    letter-spacing: 0.16em;
+    letter-spacing: 0.08em;
 
-    text-transform: uppercase;
+    color: #b66f84;
+}
 
-    color: #b86b7f;
+.screen h2 {
+    font-family: "Caveat", cursive;
+
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+
+    font-weight: 600;
+
+    line-height: 1.05;
+
+    color: #46363b;
+}
+
+.intro-text {
+    max-width: 560px;
+
+    margin: 14px auto 30px;
+
+    color: #765f66;
+
+    font-size: 1.05rem;
+
+    line-height: 1.7;
 }
 
 
-h1,
-h2,
-h3 {
-    color: #49363b;
-}
-
-
-h1 {
-    font-size:
-        clamp(
-            2rem,
-            5vw,
-            3.3rem
-        );
-
-    line-height: 1.15;
-
-    margin-bottom: 18px;
-}
-
-
-h2 {
-    font-size:
-        clamp(
-            1.8rem,
-            4vw,
-            2.6rem
-        );
-
-    line-height: 1.2;
-
-    margin-bottom: 16px;
-}
-
-
-h3 {
-    font-size: 1.3rem;
-
-    line-height: 1.4;
-}
-
-
-p {
-    line-height: 1.8;
-}
-
-
-/* =====================================
+/* =========================================================
    WELCOME SCREEN
-===================================== */
+   ========================================================= */
 
 #welcomeScreen {
     background:
-
         radial-gradient(
             circle at 20% 20%,
-            rgba(
-                255,
-                207,
-                219,
-                0.65
-            ),
+            rgba(255, 215, 228, 0.65),
             transparent 30%
         ),
-
         radial-gradient(
-            circle at 80% 80%,
-            rgba(
-                255,
-                226,
-                233,
-                0.8
-            ),
-            transparent 35%
+            circle at 85% 75%,
+            rgba(255, 231, 237, 0.75),
+            transparent 32%
         ),
-
-        #fff7f8;
+        #fff8f7;
 }
-
 
 .welcome-content {
-    animation:
-        welcomeAppear
-        0.9s
-        ease
-        both;
+    width: 100%;
+    max-width: 760px;
+
+    text-align: center;
+
+    animation: contentAppear 0.8s ease both;
 }
 
+.welcome-content h1 {
+    margin-bottom: 12px;
 
-.heart {
-    font-size:
-        clamp(
-            2.5rem,
-            8vw,
-            4.5rem
-        );
+    font-family: "Caveat", cursive;
 
-    margin-bottom: 18px;
+    font-size: clamp(3.5rem, 9vw, 6rem);
 
-    animation:
-        heartFloat
-        3s
-        ease-in-out
-        infinite;
+    font-weight: 600;
+
+    line-height: 0.95;
+
+    color: #46363b;
 }
-
 
 .welcome-content > p {
-    max-width: 580px;
+    max-width: 560px;
 
-    margin:
-        0 auto 12px;
+    margin: 0 auto;
 
-    font-size: 1rem;
+    color: #765f66;
 
-    color: #725e63;
+    font-size: 1.05rem;
+
+    line-height: 1.7;
 }
 
 
-/* =====================================
-   ENVELOPE
-===================================== */
+/* =========================================================
+   MAIN ENVELOPE
+   ========================================================= */
 
 .envelope-container {
-    width:
-        min(
-            320px,
-            85vw
-        );
+    position: relative;
 
-    margin:
-        42px auto 18px;
+    width: min(360px, 82vw);
+
+    margin: 50px auto 0;
+
+    perspective: 1200px;
+}
+
+.envelope {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 1.55;
 
     cursor: pointer;
 
-    user-select: none;
-}
-
-
-.envelope-container:focus {
-    outline: none;
-}
-
-
-.envelope {
-    width: 100%;
-
-    aspect-ratio:
-        1.5 / 1;
-
-    position: relative;
-
-    perspective: 1000px;
+    transform-style: preserve-3d;
 
     filter:
         drop-shadow(
-            0 20px 30px
-            rgba(
-                104,
-                62,
-                74,
-                0.15
-            )
-        );
-
-    transition:
-        transform 0.35s ease,
-        filter 0.35s ease;
-}
-
-
-.envelope-container:hover
-.envelope {
-    transform:
-        translateY(-6px);
-
-    filter:
-        drop-shadow(
-            0 26px 35px
-            rgba(
-                104,
-                62,
-                74,
-                0.2
-            )
+            0 18px 28px rgba(116, 69, 84, 0.14)
         );
 }
-
 
 .envelope-back {
     position: absolute;
 
     inset: 0;
 
-    background: #eeb3c3;
+    background:
+        linear-gradient(
+            145deg,
+            #f5cbd7,
+            #eeb9c9
+        );
 
-    border-radius: 8px;
+    border-radius: 12px;
 
-    overflow: hidden;
+    box-shadow:
+        0 10px 30px rgba(100, 54, 69, 0.12);
 }
 
-
-.envelope-back::before,
-.envelope-back::after {
-    content: "";
-
-    position: absolute;
-
-    width: 75%;
-    height: 75%;
-
-    background: #f4c3d0;
-}
-
-
-.envelope-back::before {
-    left: -25%;
-    bottom: -30%;
-
-    transform:
-        rotate(45deg);
-}
-
-
-.envelope-back::after {
-    right: -25%;
-    bottom: -30%;
-
-    transform:
-        rotate(-45deg);
-}
-
-
-/* =====================================
-   LETTER INSIDE ENVELOPE
-===================================== */
-
-.letter-paper {
+.envelope-paper {
     position: absolute;
 
     left: 8%;
     right: 8%;
+    bottom: 8%;
 
-    top: 8%;
-
-    height: 85%;
+    height: 72%;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    background: #fffdf9;
+    padding: 20px;
 
-    border-radius: 4px;
-
-    color: #9c5e70;
-
-    font-family:
-        "Caveat",
-        cursive;
-
-    font-size: 1.15rem;
-
-    box-shadow:
-        0 4px 12px
-        rgba(
-            76,
-            40,
-            50,
-            0.08
+    background:
+        linear-gradient(
+            135deg,
+            #fffefb,
+            #fff7f2
         );
 
-    transition:
-        transform
-        0.8s
-        cubic-bezier(
-            0.22,
-            1,
-            0.36,
-            1
-        ),
-        z-index
-        0s
-        0.4s;
-}
+    border-radius: 8px;
 
+    color: #8d5b6b;
+
+    font-family: "Caveat", cursive;
+
+    font-size: 1.5rem;
+
+    transform: translateY(30px);
+
+    transition: transform 0.8s ease;
+}
 
 .envelope-front {
     position: absolute;
 
-    inset: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    background: #e7a9bb;
+    height: 58%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f2c3d0,
+            #e9afc1
+        );
 
     clip-path:
         polygon(
             0 0,
-            50% 53%,
+            50% 55%,
             100% 0,
             100% 100%,
             0 100%
         );
 
-    border-radius: 8px;
-}
+    z-index: 3;
 
+    border-radius: 0 0 12px 12px;
+}
 
 .envelope-flap {
     position: absolute;
 
-    left: 0;
-    top: 0;
+    inset: 0;
 
-    width: 100%;
-    height: 65%;
-
-    background: #f1bac9;
+    background:
+        linear-gradient(
+            145deg,
+            #f8d6df,
+            #edbdcc
+        );
 
     clip-path:
         polygon(
             0 0,
             100% 0,
-            50% 100%
+            50% 62%
         );
 
-    transform-origin:
-        top center;
+    transform-origin: top center;
 
-    transition:
-        transform
-        0.9s
-        cubic-bezier(
-            0.22,
-            1,
-            0.36,
-            1
-        );
+    transition: transform 0.8s ease;
 
     z-index: 4;
-}
 
+    border-radius: 12px 12px 0 0;
+}
 
 .envelope-heart {
     position: absolute;
 
     left: 50%;
-    top: 56%;
+    top: 50%;
 
     transform:
-        translate(
-            -50%,
-            -50%
+        translate(-50%, -50%);
+
+    z-index: 6;
+
+    font-size: 2.3rem;
+
+    filter:
+        drop-shadow(
+            0 4px 8px rgba(130, 61, 81, 0.16)
         );
 
-    z-index: 5;
-
-    width: 48px;
-    height: 48px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background: #fff7f8;
-
-    border-radius: 50%;
-
-    font-size: 1.4rem;
-
-    box-shadow:
-        0 5px 15px
-        rgba(
-            78,
-            40,
-            51,
-            0.12
-        );
-
-    transition:
-        opacity 0.4s ease,
-        transform 0.4s ease;
+    transition: transform 0.4s ease;
 }
 
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
 
-/* =====================================
-   ENVELOPE OPEN STATE
-===================================== */
+.envelope.open .envelope-paper {
+    transform: translateY(-12px);
+}
 
-.envelope.open
-.envelope-flap {
+.envelope.open .envelope-heart {
     transform:
-        rotateX(180deg);
+        translate(-50%, -50%)
+        scale(0.8);
 }
-
-
-.envelope.open
-.letter-paper {
-    transform:
-        translateY(-55%);
-
-    z-index: 3;
-}
-
-
-.envelope.open
-.envelope-heart {
-    opacity: 0;
-
-    transform:
-        translate(
-            -50%,
-            -50%
-        )
-        scale(0.7);
-}
-
 
 .envelope-hint {
-    margin-top: 16px;
+    margin-top: 20px;
 
-    font-size: 0.9rem;
+    color: #a06a7a;
 
-    color: #9b7c85;
+    font-size: 1rem;
 
-    transition:
-        opacity 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 
-.envelope-container.opening
-.envelope-hint {
-    opacity: 0;
-}
-
-
-.small-note {
-    margin-top: 24px;
-
-    font-size: 0.82rem;
-
-    color: #ae9299;
-}
-
-
-/* =====================================
+/* =========================================================
    MOOD SCREEN
-===================================== */
+   ========================================================= */
 
 #moodScreen {
     background:
-
         radial-gradient(
-            circle at 50% 0%,
-            rgba(
-                255,
-                214,
-                225,
-                0.75
-            ),
-            transparent 42%
+            circle at 15% 15%,
+            rgba(255, 222, 232, 0.7),
+            transparent 30%
         ),
-
-        #fff8fa;
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(255, 235, 239, 0.8),
+            transparent 32%
+        ),
+        #fff9f8;
 }
-
 
 .mood-content {
-    animation:
-        contentAppear
-        0.7s
-        ease
-        both;
-}
+    width: 100%;
+    max-width: 720px;
 
+    text-align: center;
+
+    animation: contentAppear 0.7s ease both;
+}
 
 .mood-content > div:first-child {
     font-size: 3rem;
@@ -647,8 +397,7 @@ p {
     margin-bottom: 16px;
 }
 
-
-.mood-content > p {
+.mood-content > p.intro-text {
     max-width: 520px;
 
     margin:
@@ -657,72 +406,50 @@ p {
     color: #765f66;
 }
 
-
-/* =====================================
-   MOOD BUTTONS
-===================================== */
-
 .mood-buttons {
     display: grid;
 
     grid-template-columns:
-        repeat(
-            3,
-            1fr
-        );
+        repeat(3, 1fr);
 
     gap: 14px;
 
     width: 100%;
-
     max-width: 620px;
 
     margin: 0 auto;
 }
-
 
 .mood-button {
     position: relative;
 
     min-height: 110px;
 
-    padding:
-        18px 14px;
+    padding: 18px 14px;
 
     border:
-        1px solid
-        #f0d6dd;
+        1px solid #f0d6dd;
 
     border-radius: 20px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.88
-        );
+        rgba(255, 255, 255, 0.88);
 
     color: #60474f;
 
     cursor: pointer;
 
+    overflow: hidden;
+
     box-shadow:
-        0 8px 25px
-        rgba(
-            109,
-            62,
-            78,
-            0.07
-        );
+        0 9px 22px rgba(112, 65, 79, 0.07);
 
     transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease,
-        box-shadow 0.3s ease;
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
 }
-
 
 .mood-button::before {
     content: "";
@@ -731,93 +458,46 @@ p {
 
     inset: 0;
 
-    border-radius: inherit;
-
     background:
         linear-gradient(
             135deg,
-            rgba(
-                255,
-                255,
-                255,
-                0.55
-            ),
+            rgba(255, 255, 255, 0.8),
             transparent
         );
 
     pointer-events: none;
-
-    opacity: 0;
-
-    transition:
-        opacity 0.3s ease;
 }
-
 
 .mood-button:hover {
-    transform:
-        translateY(-6px);
+    transform: translateY(-6px);
 
-    border-color:
-        #e5aabd;
+    border-color: #e5aabd;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.98
-        );
+        rgba(255, 252, 253, 0.98);
 
     box-shadow:
-        0 16px 32px
-        rgba(
-            109,
-            62,
-            78,
-            0.12
-        );
+        0 15px 30px rgba(112, 65, 79, 0.12);
 }
-
-
-.mood-button:hover::before {
-    opacity: 1;
-}
-
 
 .mood-button.selected {
     transform:
         translateY(-5px)
         scale(1.015);
 
-    border-color:
-        #df7f9b;
+    border-color: #df7f9b;
 
     background:
         linear-gradient(
-            145deg,
+            135deg,
             #fff0f4,
             #ffe7ee
         );
 
     box-shadow:
-        0 15px 32px
-        rgba(
-            194,
-            94,
-            121,
-            0.16
-        ),
-
-        0 0 0 4px
-        rgba(
-            223,
-            127,
-            155,
-            0.08
-        );
+        0 14px 30px rgba(178, 88, 113, 0.13),
+        0 0 0 3px rgba(223, 127, 155, 0.1);
 }
-
 
 .mood-button.selected::after {
     content: "♥";
@@ -827,56 +507,41 @@ p {
     top: 9px;
     right: 13px;
 
-    font-size: 0.75rem;
+    color: #d47792;
 
-    color: #d26e8b;
+    font-size: 1rem;
 
     animation:
-        selectedHeart
-        0.5s
-        ease
-        both;
+        selectedHeart 0.5s ease;
 }
-
 
 .mood-button span {
     position: relative;
 
-    display: block;
-
     z-index: 1;
-}
 
+    display: block;
+}
 
 .mood-button span:first-child {
     margin-bottom: 8px;
 
     font-size: 2rem;
 
-    transform-origin:
-        center;
-
     transition:
-        transform
-        0.3s
-        ease;
+        transform 0.25s ease;
 }
 
-
-.mood-button:hover
-span:first-child {
+.mood-button:hover span:first-child {
     transform:
         scale(1.12)
         rotate(-3deg);
 }
 
-
-.mood-button.selected
-span:first-child {
+.mood-button.selected span:first-child {
     transform:
         scale(1.12);
 }
-
 
 .mood-button span:last-child {
     font-size: 0.88rem;
@@ -884,21 +549,10 @@ span:first-child {
     font-weight: 600;
 }
 
-
-/* =====================================
-   MOOD RESPONSE
-===================================== */
-
 .mood-response {
-    position: relative;
-
     width: fit-content;
 
-    max-width:
-        min(
-            92%,
-            580px
-        );
+    max-width: min(92%, 580px);
 
     margin:
         18px auto 0;
@@ -907,51 +561,27 @@ span:first-child {
         10px 18px 11px;
 
     border:
-        1px solid
-        rgba(
-            216,
-            128,
-            151,
-            0.25
-        );
+        1px solid rgba(216, 128, 151, 0.25);
 
     border-radius: 18px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(
-                255,
-                248,
-                250,
-                0.97
-            ),
-            rgba(
-                255,
-                235,
-                241,
-                0.94
-            )
+            rgba(255, 244, 247, 0.95),
+            rgba(255, 232, 239, 0.95)
         );
 
     color: #96586b;
 
-    font-family:
-        "Patrick Hand",
-        cursive;
+    font-family: "Patrick Hand", cursive;
 
     font-size: 1.08rem;
 
     line-height: 1.4;
 
     box-shadow:
-        0 8px 22px
-        rgba(
-            178,
-            88,
-            113,
-            0.08
-        );
+        0 8px 20px rgba(178, 88, 113, 0.07);
 
     opacity: 0;
 
@@ -962,30 +592,23 @@ span:first-child {
     pointer-events: none;
 
     transition:
-        opacity 0.35s ease,
-        transform 0.35s ease,
-        box-shadow 0.35s ease;
+        opacity 0.3s ease,
+        transform 0.3s ease;
 }
-
 
 .mood-response::before {
     content: "♡";
-
-    display: inline-block;
 
     margin-right: 7px;
 
     color: #d47792;
 
-    font-family:
-        "Caveat",
-        cursive;
+    font-family: "Caveat", cursive;
 
     font-size: 1.25rem;
 
     vertical-align: -1px;
 }
-
 
 .mood-response.show {
     opacity: 1;
@@ -995,19 +618,13 @@ span:first-child {
         scale(1);
 
     box-shadow:
-        0 12px 30px
-        rgba(
-            178,
-            88,
-            113,
-            0.11
-        );
+        0 12px 30px rgba(178, 88, 113, 0.11);
 }
 
 
-/* =====================================
+/* =========================================================
    PRIMARY BUTTON
-===================================== */
+   ========================================================= */
 
 .primary-button {
     min-width: 190px;
@@ -1043,13 +660,7 @@ span:first-child {
     cursor: pointer;
 
     box-shadow:
-        0 9px 22px
-        rgba(
-            181,
-            87,
-            113,
-            0.2
-        );
+        0 9px 22px rgba(181, 87, 113, 0.2);
 
     transition:
         transform 0.25s ease,
@@ -1058,448 +669,37 @@ span:first-child {
         opacity 0.25s ease;
 }
 
-
 .primary-button:hover {
     transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 13px 28px
-        rgba(
-            181,
-            87,
-            113,
-            0.27
-        );
-}
-
-
-.primary-button:active {
-    transform:
-        scale(0.97);
-}
-
-
-/* =====================================
-   LETTER SCREEN
-===================================== */
-
-#letterScreen {
-    background:
-
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(
-                255,
-                214,
-                225,
-                0.45
-            ),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 85% 80%,
-            rgba(
-                255,
-                229,
-                235,
-                0.6
-            ),
-            transparent 35%
-        ),
-
-        #fff9fa;
-}
-
-
-.letter-content {
-    animation:
-        contentAppear
-        0.7s
-        ease
-        both;
-}
-
-
-/* =====================================
-   LETTER PROGRESS
-===================================== */
-
-.letter-progress {
-    width: 100%;
-
-    max-width: 620px;
-
-    height: 6px;
-
-    margin:
-        8px auto 22px;
-
-    overflow: hidden;
-
-    border-radius: 999px;
-
-    background:
-        #f4dfe5;
-}
-
-
-.letter-progress-bar {
-    width: 20%;
-
-    height: 100%;
-
-    border-radius: inherit;
-
-    background:
-        linear-gradient(
-            90deg,
-            #d98aa0,
-            #c96e88
-        );
-
-    transition:
-        width
-        0.45s
-        ease;
-}
-
-
-/* =====================================
-   LETTER CARD
-===================================== */
-
-.letter-card {
-    position: relative;
-
-    width: 100%;
-
-    max-width: 620px;
-
-    min-height: 280px;
-
-    margin:
-        0 auto;
-
-    padding:
-        clamp(
-            28px,
-            5vw,
-            44px
-        );
-
-    text-align: left;
-
-    background:
-        #fffdf8;
-
-    border:
-        1px solid
-        #f0dce1;
-
-    border-radius:
-        4px;
-
-    box-shadow:
-        0 18px 45px
-        rgba(
-            91,
-            55,
-            66,
-            0.12
-        );
-
-    transform-origin:
-        center;
-
-    transition:
-        opacity
-        0.25s
-        ease,
-
-        transform
-        0.25s
-        ease;
-}
-
-
-/* =====================================
-   NOTEBOOK LINES
-===================================== */
-
-.letter-card::before {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    border-radius: inherit;
-
-    pointer-events: none;
-
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            transparent 0,
-            transparent 35px,
-            rgba(
-                207,
-                155,
-                171,
-                0.15
-            ) 36px
-        );
-}
-
-
-/* =====================================
-   LETTER TEXT
-===================================== */
-
-#letterText {
-    position: relative;
-
-    z-index: 1;
-
-    font-family:
-        "Caveat",
-        cursive;
-
-    font-size:
-        clamp(
-            1.35rem,
-            3vw,
-            1.7rem
-        );
-
-    line-height: 1.75;
-
-    color: #584249;
-}
-
-
-/* =====================================
-   PAGE CHANGE
-===================================== */
-
-.letter-card.changing {
-    opacity: 0;
-
-    transform:
-        translateX(-18px)
-        rotate(-1deg)
-        scale(0.985);
-}
-
-
-/* =====================================
-   PROMISE SCREEN
-===================================== */
-
-#promiseScreen {
-    background:
-
-        radial-gradient(
-            circle at 50% 15%,
-            rgba(
-                255,
-                216,
-                226,
-                0.7
-            ),
-            transparent 40%
-        ),
-
-        #fff8fa;
-}
-
-
-.promise-content {
-    animation:
-        contentAppear
-        0.7s
-        ease
-        both;
-}
-
-
-.promise-icon {
-    font-size:
-        clamp(
-            3rem,
-            8vw,
-            4.5rem
-        );
-
-    margin-bottom: 18px;
-}
-
-
-.promise-text {
-    max-width: 560px;
-
-    margin:
-        0 auto 10px;
-
-    font-family:
-        "Caveat",
-        cursive;
-
-    font-size:
-        clamp(
-            1.5rem,
-            3vw,
-            2rem
-        );
-
-    color: #664b55;
-}
-
-
-.promise-subtext {
-    max-width: 540px;
-
-    margin:
-        0 auto 26px;
-
-    color: #816b73;
-
-    font-size:
-        0.98rem;
-}
-
-
-.promise-buttons {
-    display: flex;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 14px;
-}
-
-
-.promise-button {
-    min-width: 170px;
-
-    padding:
-        15px 22px;
-
-    border:
-        1px solid
-        #efd7df;
-
-    border-radius: 18px;
-
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.9
-        );
-
-    color: #684d58;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 22px
-        rgba(
-            103,
-            61,
-            76,
-            0.07
-        );
-
-    transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-
-.promise-button:hover {
-    transform:
         translateY(-4px);
-
-    border-color:
-        #e3a9ba;
-
-    box-shadow:
-        0 13px 28px
-        rgba(
-            103,
-            61,
-            76,
-            0.11
-        );
-}
-
-
-.promise-button.selected {
-    transform:
-        translateY(-4px)
-        scale(1.02);
-
-    border-color:
-        #d9869e;
 
     background:
         linear-gradient(
             135deg,
-            #fff0f4,
-            #ffe7ed
+            #c56b85,
+            #b85d77
         );
 
     box-shadow:
-        0 14px 30px
-        rgba(
-            194,
-            94,
-            121,
-            0.15
-        );
+        0 14px 28px rgba(181, 87, 113, 0.27);
 }
 
-
-.promise-response {
-    max-width: 560px;
-
-    margin:
-        20px auto 0;
-
-    font-family:
-        "Patrick Hand",
-        cursive;
-
-    font-size: 1.2rem;
-
-    color: #96596c;
-
-    opacity: 0;
-
+.primary-button:active {
     transform:
-        translateY(8px);
-
-    transition:
-        opacity 0.35s ease,
-        transform 0.35s ease;
+        translateY(-1px);
 }
 
+.primary-button:disabled {
+    opacity: 0.45;
 
-.promise-response.show {
-    opacity: 1;
+    cursor: not-allowed;
 
-    transform:
-        translateY(0);
+    transform: none;
+
+    box-shadow: none;
 }
 
-
+.mood-continue,
 .promise-continue {
     opacity: 0;
 
@@ -1507,13 +707,9 @@ span:first-child {
 
     transform:
         translateY(8px);
-
-    transition:
-        opacity 0.35s ease,
-        transform 0.35s ease;
 }
 
-
+.mood-continue.show,
 .promise-continue.show {
     opacity: 1;
 
@@ -1524,295 +720,1329 @@ span:first-child {
 }
 
 
-.promise-made {
-    animation:
-        promiseMade
-        0.65s
-        ease
-        both;
-}
+/* =========================================================
+   MAIN LETTER SCREEN
+   ========================================================= */
 
-
-/* =====================================
-   FINAL SCREEN
-===================================== */
-
-#finalScreen {
+#letterScreen {
     background:
-
         radial-gradient(
-            circle at 50% 25%,
-            rgba(
-                255,
-                216,
-                227,
-                0.7
-            ),
-            transparent 45%
+            circle at 15% 20%,
+            rgba(255, 218, 228, 0.6),
+            transparent 28%
         ),
-
-        #fff8fa;
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(255, 230, 235, 0.8),
+            transparent 30%
+        ),
+        #fff8f7;
 }
 
+.letter-content {
+    width: 100%;
+    max-width: 900px;
 
-.final-content {
+    text-align: center;
+
     animation:
-        contentAppear
-        0.7s
-        ease
-        both;
+        contentAppear 0.7s ease both;
+}
+
+.letter-content h2 {
+    margin-bottom: 20px;
+
+    font-family:
+        "Segoe Script",
+        "Brush Script MT",
+        cursive;
+
+    font-size:
+        clamp(2.8rem, 6vw, 4.3rem);
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    color: #46363b;
 }
 
 
-.final-card {
+/* =========================================================
+   LETTER PROGRESS
+   ========================================================= */
+
+.letter-progress {
+    width:
+        min(650px, 80vw);
+
+    height: 6px;
+
+    margin:
+        24px auto 26px;
+
+    background:
+        #f2dfe4;
+
+    border-radius: 999px;
+
+    overflow: hidden;
+}
+
+.letter-progress-bar {
+    width: 20%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #cf7b91,
+            #db8ba1
+        );
+
+    border-radius: inherit;
+
+    transition:
+        width 0.5s ease;
+}
+
+
+/* =========================================================
+   LETTER WRAPPER
+   ========================================================= */
+
+.letter-wrapper {
+    position: relative;
+
+    width: 100%;
+    max-width: 850px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   PAGE NUMBER
+   ========================================================= */
+
+.letter-page-number {
+    margin-bottom: 14px;
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size: 1rem;
+
+    font-weight: 400;
+
+    letter-spacing: 0.08em;
+
+    color: #ae7b88;
+}
+
+
+/* =========================================================
+   PAPER CARD
+   ========================================================= */
+
+.letter-card {
     position: relative;
 
     width: 100%;
 
-    max-width: 560px;
-
-    margin:
-        25px auto 0;
+    min-height: 390px;
 
     padding:
-        clamp(
-            28px,
-            6vw,
-            45px
-        );
+        58px
+        clamp(32px, 5vw, 64px)
+        42px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.9
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 38px,
+            rgba(190, 133, 148, 0.15) 39px,
+            transparent 40px
+        ),
+        linear-gradient(
+            135deg,
+            #fffefa,
+            #fffaf5
         );
 
     border:
-        1px solid
-        #f0dce2;
+        1px solid #eadfd9;
 
-    border-radius: 24px;
+    border-radius: 10px;
+
+    text-align: left;
+
+    overflow: hidden;
+
+    transform:
+        rotate(-0.25deg);
 
     box-shadow:
-        0 18px 45px
-        rgba(
-            91,
-            55,
-            66,
-            0.1
-        );
+        0 22px 45px rgba(96, 57, 68, 0.13),
+        0 5px 12px rgba(96, 57, 68, 0.06);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
 }
 
 
-.final-card h3 {
+/* =========================================================
+   PAPER HEART / TAPE
+   ========================================================= */
+
+.letter-card::before {
+    content: "♡";
+
+    position: absolute;
+
+    left: 22px;
+    top: 18px;
+
+    width: 88px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 3;
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 24px;
+
+    color: #b7657d;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(248, 190, 207, 0.96),
+            rgba(239, 169, 190, 0.92)
+        );
+
+    border-radius: 2px;
+
+    box-shadow:
+        0 4px 10px rgba(120, 70, 82, 0.08);
+
+    transform:
+        rotate(-5deg);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   FAINT HEART
+   ========================================================= */
+
+.letter-card::after {
+    content: "♡";
+
+    position: absolute;
+
+    right: 22px;
+    bottom: 3px;
+
+    z-index: 1;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 4.8rem;
+
+    color:
+        rgba(211, 126, 148, 0.09);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   LETTER DECORATIONS
+   ========================================================= */
+
+.letter-decoration {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 1.6rem;
+
+    color: #d5829a;
+
+    margin-bottom: 16px;
+}
+
+.letter-decoration.bottom {
+    margin-top: 24px;
+
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   MAIN LETTER MESSAGE
+   ========================================================= */
+
+/*
+   IMPORTANT:
+   Smaller, cleaner handwritten font.
+   This fixes the oversized message issue.
+*/
+
+#letterText {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
     font-family:
         "Caveat",
         cursive;
 
     font-size:
-        clamp(
-            1.7rem,
-            4vw,
-            2.1rem
-        );
+        clamp(1.2rem, 1.65vw, 1.48rem);
 
-    font-weight: 600;
+    font-weight: 400;
 
-    margin-bottom: 22px;
+    line-height: 1.8;
+
+    letter-spacing: 0.01em;
+
+    color: #584733;
+
+    text-rendering:
+        optimizeLegibility;
+
+    -webkit-font-smoothing:
+        antialiased;
 }
 
+
+/* Future paragraph support */
+
+#letterText p {
+    margin:
+        0 0 22px;
+}
+
+#letterText p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   LETTER PAGE CHANGE
+   ========================================================= */
+
+.letter-card.changing {
+    opacity: 0;
+
+    transform:
+        translateY(10px)
+        rotate(0.4deg);
+}
+
+
+/* =========================================================
+   PROMISE SCREEN
+   ========================================================= */
+
+#promiseScreen {
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(255, 212, 225, 0.8),
+            transparent 35%
+        ),
+        #fff8fa;
+}
+
+.promise-content {
+    width: 100%;
+    max-width: 700px;
+
+    text-align: center;
+
+    animation:
+        contentAppear 0.7s ease both;
+}
+
+.promise-icon {
+    margin-bottom: 14px;
+
+    font-size:
+        clamp(2.8rem, 8vw, 4rem);
+
+    animation:
+        softPulse 2.5s ease-in-out infinite;
+}
+
+.promise-text {
+    margin:
+        12px auto 8px;
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size:
+        clamp(1.6rem, 4vw, 2.2rem);
+
+    font-weight: 500;
+
+    line-height: 1.45;
+
+    color: #644b53;
+}
+
+.promise-subtext {
+    max-width: 500px;
+
+    margin:
+        0 auto 28px;
+
+    color: #846d74;
+
+    font-size: 0.95rem;
+
+    line-height: 1.7;
+}
+
+.promise-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    width: 100%;
+
+    margin: 0 auto;
+}
+
+.promise-button {
+    min-width: 180px;
+
+    padding:
+        14px 22px;
+
+    border:
+        1px solid #edccd6;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.9);
+
+    color: #654b53;
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 22px rgba(105, 61, 76, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.promise-button:hover {
+    transform:
+        translateY(-4px);
+
+    border-color:
+        #d990a5;
+
+    background:
+        #fff1f5;
+
+    box-shadow:
+        0 13px 28px rgba(105, 61, 76, 0.13);
+}
+
+.promise-button.selected {
+    border-color:
+        #cf718c;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffeef3,
+            #ffe4eb
+        );
+
+    transform:
+        translateY(-3px);
+}
+
+.promise-emoji {
+    margin-right: 7px;
+}
+
+.promise-response {
+    min-height: 30px;
+
+    max-width: 520px;
+
+    margin:
+        22px auto 0;
+
+    color: #a35d73;
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 1.35rem;
+
+    line-height: 1.45;
+
+    opacity: 0;
+
+    transform:
+        translateY(10px)
+        scale(0.97);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.promise-response.show {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    animation:
+        promiseResponse 0.5s ease;
+}
+
+
+/* =========================================================
+   FINAL SCREEN
+   ========================================================= */
+
+#finalScreen {
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 219, 231, 0.7),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 231, 237, 0.8),
+            transparent 30%
+        ),
+        #fff8fa;
+}
+
+.final-content {
+    width: 100%;
+    max-width: 700px;
+
+    text-align: center;
+
+    animation:
+        contentAppear 0.7s ease both;
+}
+
+.final-content .heart {
+    margin-bottom: 14px;
+
+    font-size:
+        clamp(3rem, 8vw, 4.5rem);
+
+    animation:
+        softPulse 2.5s ease-in-out infinite;
+}
+
+.final-card {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding:
+        clamp(22px, 5vw, 40px);
+
+    background:
+        rgba(255, 255, 255, 0.9);
+
+    border:
+        1px solid #f3dce7;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 35px rgba(64, 43, 54, 0.08);
+}
+
+.final-card h3 {
+    margin-bottom: 20px;
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size:
+        clamp(1.8rem, 4vw, 2.4rem);
+
+    font-weight: 500;
+
+    color: #624952;
+}
 
 .final-card p {
     margin-bottom: 12px;
 
-    font-size:
-        clamp(
-            1rem,
-            2.5vw,
-            1.15rem
-        );
+    font-family:
+        "Caveat",
+        cursive;
 
-    color: #614c53;
+    font-size:
+        clamp(1.15rem, 2.2vw, 1.4rem);
+
+    line-height: 1.8;
+
+    color: #644c54;
+}
+
+.signature {
+    margin-top: 25px;
+
+    color: #8c6172 !important;
+
+    font-style: italic;
 }
 
 
-.signature {
-    margin-top: 28px;
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
+
+.secondary-button {
+    display: block;
+
+    min-width: 190px;
+
+    margin:
+        12px auto 0;
+
+    padding:
+        11px 24px;
+
+    border:
+        1px solid #e4bdca;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.82);
+
+    color: #8c5a6b;
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size: 1.15rem;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px rgba(105, 61, 76, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.secondary-button:hover {
+    transform:
+        translateY(-3px);
+
+    background:
+        #fff1f5;
+
+    border-color:
+        #d990a5;
+}
+
+
+/* =========================================================
+   OPEN WHEN SCREEN
+   ========================================================= */
+
+#openWhenScreen {
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(255, 216, 230, 0.7),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(255, 231, 237, 0.8),
+            transparent 32%
+        ),
+        #fff8fa;
+}
+
+.open-when-content {
+    width: 100%;
+    max-width: 900px;
+
+    text-align: center;
+
+    animation:
+        contentAppear 0.7s ease both;
+}
+
+.open-when-header {
+    margin-bottom: 30px;
+}
+
+.open-when-header.hidden {
+    display: none;
+}
+
+.open-when-icon {
+    margin-bottom: 12px;
+
+    font-size:
+        clamp(2.8rem, 8vw, 4rem);
+}
+
+.open-when-intro {
+    max-width: 600px;
+
+    margin:
+        12px auto 0;
+
+    color: #806b72;
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   OPEN WHEN CARDS
+   ========================================================= */
+
+.open-when-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 16px;
+
+    width: 100%;
+}
+
+.open-when-grid.hidden {
+    display: none;
+}
+
+.open-when-card {
+    position: relative;
+
+    min-height: 150px;
+
+    padding:
+        24px 18px;
+
+    border:
+        1px solid #efd6df;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255, 255, 255, 0.9);
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(105, 61, 76, 0.07);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.open-when-card:hover {
+    transform:
+        translateY(-6px);
+
+    border-color:
+        #dfa8b9;
+
+    background:
+        #fffafd;
+
+    box-shadow:
+        0 17px 32px rgba(105, 61, 76, 0.12);
+}
+
+.open-when-card-icon {
+    margin-bottom: 9px;
+
+    font-size: 2.2rem;
+}
+
+.open-when-card-title {
+    margin-bottom: 5px;
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 1.55rem;
+
+    color: #60474f;
+}
+
+.open-when-card-hint {
+    color: #967781;
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   OPEN WHEN ENVELOPE
+   ========================================================= */
+
+.open-when-letter {
+    display: none;
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+.open-when-letter.selected {
+    display: block;
+    animation: contentAppear 0.45s ease both;
+}
+
+.open-when-letter.selected {
+    margin-top: 0;
+}
+
+.open-when-envelope-stage {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+.open-when-envelope-stage.leaving {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.94);
+    pointer-events: none;
+}
+
+.open-when-envelope-stage.hidden {
+    display: none;
+}
+
+.open-when-envelope {
+    position: relative;
+
+    width:
+        min(360px, 82vw);
+
+    aspect-ratio: 1.55;
+
+    margin:
+        40px auto 0;
+
+    cursor: pointer;
+
+    transform-style: preserve-3d;
+
+    filter:
+        drop-shadow(
+            0 15px 28px rgba(105, 61, 76, 0.12)
+        );
+
+    transition:
+        transform 0.25s ease;
+}
+
+.open-when-envelope:hover {
+    transform:
+        translateY(-4px);
+}
+
+.open-when-envelope-back {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f5cbd7,
+            #edb8c9
+        );
+
+    border-radius: 12px;
+}
+
+.open-when-envelope-paper {
+    position: absolute;
+
+    left: 9%;
+    right: 9%;
+    bottom: 7%;
+
+    height: 72%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffefb,
+            #fff7f2
+        );
+
+    border-radius: 8px;
+
+    color: #8d5b6b;
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 1.45rem;
+
+    transform:
+        translateY(12px);
+
+    transition:
+        transform 0.7s ease;
+
+    z-index: 2;
+}
+
+.open-when-envelope-front {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 58%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f2c3d0,
+            #e9afc1
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 55%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+
+    border-radius:
+        0 0 12px 12px;
+
+    z-index: 3;
+}
+
+.open-when-envelope-flap {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8d6df,
+            #edbdcc
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 62%
+        );
+
+    transform-origin:
+        top center;
+
+    transition:
+        transform 0.75s ease;
+
+    z-index: 4;
+
+    border-radius:
+        12px 12px 0 0;
+}
+
+.open-when-envelope-heart {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 6;
+
+    font-size: 2.3rem;
+
+    filter:
+        drop-shadow(
+            0 4px 8px rgba(130, 61, 81, 0.16)
+        );
+
+    transition:
+        transform 0.4s ease;
+}
+
+.open-when-envelope-paper span {
+    opacity: 0;
+    transition: opacity 0.2s ease 0.35s;
+}
+
+.open-when-envelope.open .open-when-envelope-flap,
+.open-when-envelope.envelope-open .open-when-envelope-flap {
+    transform:
+        rotateX(180deg);
+    backface-visibility: hidden;
+}
+
+.open-when-envelope.open .open-when-envelope-paper,
+.open-when-envelope.envelope-open .open-when-envelope-paper {
+    transform:
+        translateY(-58px);
+    z-index: 5;
+}
+
+.open-when-envelope.open .open-when-envelope-paper span,
+.open-when-envelope.envelope-open .open-when-envelope-paper span {
+    opacity: 1;
+}
+
+.open-when-envelope.open .open-when-envelope-heart,
+.open-when-envelope.envelope-open .open-when-envelope-heart {
+    transform:
+        translate(-50%, -50%)
+        scale(0.8);
+}
+
+.open-when-envelope-hint {
+    margin-top: 16px;
+
+    text-align: center;
+
+    color: #9a6878;
+
+    font-size: 1rem;
+}
+
+#openWhenEnvelope .envelope-paper {
+    z-index: 2;
+    visibility: hidden;
+    transform: translateY(30px);
+    transition: transform 0.8s ease, visibility 0s 0.8s;
+}
+
+#openWhenEnvelope .envelope-paper span {
+    opacity: 0;
+    transition: opacity 0.2s ease 0.45s;
+}
+
+#openWhenEnvelope.open .envelope-paper {
+    visibility: visible;
+    transform: translateY(-12px);
+    transition: transform 0.8s ease, visibility 0s;
+}
+
+#openWhenEnvelope.open .envelope-paper span {
+    opacity: 1;
+}
+
+#openWhenEnvelope .envelope-heart {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#openWhenEnvelope.open .envelope-heart {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+}
+
+
+/* =========================================================
+   OPEN WHEN LETTER CONTENT
+   ========================================================= */
+
+.open-when-letter-content {
+    display: none;
+
+    max-width: 720px;
+
+    margin:
+        35px auto 0;
+
+    padding:
+        clamp(25px, 5vw, 45px);
+
+    text-align: left;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 38px,
+            rgba(190, 133, 148, 0.12) 39px,
+            transparent 40px
+        ),
+        linear-gradient(
+            135deg,
+            #fffefa,
+            #fffaf5
+        );
+
+    border:
+        1px solid #eadfd9;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 20px 45px rgba(96, 57, 68, 0.12);
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+.open-when-letter-content.show {
+    display: block;
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    animation: openWhenLetterEnter 0.5s ease both;
+}
+
+@keyframes openWhenLetterEnter {
+    from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.open-when-letter-icon {
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    font-size: 2.2rem;
+}
+
+.open-when-letter-content h3 {
+    margin-bottom: 20px;
+
+    text-align: center;
 
     font-family:
         "Caveat",
         cursive;
 
     font-size:
-        1.4rem !important;
+        clamp(2rem, 5vw, 3rem);
 
-    color: #956374 !important;
+    font-weight: 600;
+
+    color: #60474f;
+}
+
+.open-when-letter-text {
+    color: #584733;
+
+    font-family:
+        "Segoe Script",
+        "Brush Script MT",
+        cursive;
+
+    font-size:
+        clamp(1.25rem, 2vw, 1.55rem);
+
+    font-weight: 400;
+
+    line-height: 1.75;
+}
+
+#letterText,
+.open-when-letter-text {
+    font-family: "Segoe Script", "Brush Script MT", cursive;
+    font-weight: 400;
+}
+
+.open-when-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.open-when-slide-counter {
+    margin: 18px 0 0;
+    text-align: center;
+    color: #967781;
+    font-size: 0.9rem;
+}
+
+.open-when-nav-button {
+    margin-top: 0;
+    min-width: 150px;
+}
+
+.open-when-nav-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.open-when-letter-content .primary-button {
+    display: block;
+
+    margin:
+        20px auto 0;
 }
 
 
-/* =====================================
+/* =========================================================
    FLOATING HEARTS
-===================================== */
-
-/*
-   These hearts are generated
-   dynamically by JavaScript.
-*/
+   ========================================================= */
 
 .floating-heart {
     position: fixed;
 
-    left:
-        var(--left);
+    left: var(--left);
+    bottom: -40px;
 
-    bottom: -30px;
+    width: var(--size);
+    height: var(--size);
 
-    width:
-        var(--size);
-
-    height:
-        var(--size);
-
-    z-index: 50;
+    z-index: 999;
 
     pointer-events: none;
 
-    user-select: none;
-
     color:
-        rgba(
-            203,
-            104,
-            132,
-            0.32
-        );
+        rgba(217, 119, 147, 0.55);
 
     font-size:
         var(--size);
 
     line-height: 1;
 
-    opacity: 0;
-
-    transform:
-        translateX(0)
-        translateY(0)
-        scale(0.7);
-
     animation:
-        floatingHeart
-        var(--duration)
-        ease-in
-        forwards;
+        floatUp var(--duration) linear forwards;
 }
 
-
-/*
-   Main floating animation
-*/
-
-@keyframes floatingHeart {
+@keyframes floatUp {
 
     0% {
         opacity: 0;
 
         transform:
-            translateX(0)
             translateY(0)
-            scale(0.65)
+            translateX(0)
+            scale(0.8)
             rotate(0deg);
     }
 
-
-    12% {
-        opacity: 0.65;
+    10% {
+        opacity: 0.8;
     }
-
-
-    50% {
-        opacity: 0.42;
-
-        transform:
-            translateX(
-                calc(
-                    var(--drift) * 0.45
-                )
-            )
-            translateY(
-                -50vh
-            )
-            scale(1)
-            rotate(10deg);
-    }
-
-
-    82% {
-        opacity: 0.22;
-    }
-
 
     100% {
         opacity: 0;
 
         transform:
-            translateX(
-                var(--drift)
-            )
-            translateY(
-                -110vh
-            )
+            translateY(-110vh)
+            translateX(var(--drift, 30px))
             scale(1.15)
-            rotate(-12deg);
+            rotate(20deg);
     }
-
 }
 
 
-/* =====================================
-   GENERAL ANIMATIONS
-===================================== */
-
-@keyframes screenIn {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(18px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-
-}
-
-
-@keyframes welcomeAppear {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(20px)
-            scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
-}
-
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
 
 @keyframes contentAppear {
 
@@ -1829,29 +2059,21 @@ span:first-child {
         transform:
             translateY(0);
     }
-
 }
 
+@keyframes softPulse {
 
-@keyframes heartFloat {
-
-    0% {
+    0%,
+    100% {
         transform:
-            translateY(0);
+            scale(1);
     }
 
     50% {
         transform:
-            translateY(-9px);
+            scale(1.06);
     }
-
-    100% {
-        transform:
-            translateY(0);
-    }
-
 }
-
 
 @keyframes selectedHeart {
 
@@ -1859,331 +2081,576 @@ span:first-child {
         opacity: 0;
 
         transform:
-            scale(0);
+            scale(0.5);
     }
 
-    70% {
+    60% {
         opacity: 1;
 
         transform:
-            scale(1.25);
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            scale(1);
-    }
-
-}
-
-
-@keyframes promiseMade {
-
-    0% {
-        transform:
-            scale(1);
-    }
-
-    35% {
-        transform:
-            scale(1.025);
-    }
-
-    65% {
-        transform:
-            scale(0.99);
+            scale(1.2);
     }
 
     100% {
         transform:
             scale(1);
     }
+}
 
+@keyframes promiseResponse {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
 
 
-/* =====================================
+/* =========================================================
    TABLET
-===================================== */
+   ========================================================= */
 
-@media (max-width: 768px) {
-
-    .screen {
-        padding:
-            35px 18px;
-    }
-
-
-    .mood-buttons {
-        gap: 12px;
-    }
-
-
-    .mood-button {
-        min-height: 105px;
-    }
-
-}
-
-
-/* =====================================
-   MOBILE
-===================================== */
-
-@media (max-width: 600px) {
+@media (max-width: 760px) {
 
     .screen {
         padding:
-            30px 15px;
+            34px 18px;
     }
-
 
     .mood-buttons {
         grid-template-columns:
             1fr;
-    }
 
+        max-width: 420px;
+    }
 
     .mood-button {
-        min-height: 76px;
+        min-height: 78px;
 
-        padding:
-            12px 16px;
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 12px;
     }
 
-
     .mood-button span:first-child {
-        display: inline-block;
-
-        margin-right: 8px;
-
         margin-bottom: 0;
     }
 
+    .promise-buttons {
+        flex-direction: column;
 
-    .letter-card {
-        min-height: 300px;
-
-        padding:
-            24px 20px;
+        align-items: center;
     }
 
+    .promise-button {
+        width:
+            min(100%, 360px);
+    }
 
-    #letterText {
-        font-size:
-            clamp(
-                1.25rem,
-                5vw,
-                1.55rem
-            );
+    .open-when-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
 
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    .screen {
+        min-height: 100svh;
+
+        padding:
+            28px 16px;
+    }
+
+    .app {
+        max-width: 100%;
+    }
+
+    .welcome-content > p,
+    .intro-text,
+    .open-when-intro,
+    .promise-subtext,
+    .extra-intro {
+        font-size: 0.94rem;
         line-height: 1.7;
     }
 
-
-    .promise-buttons {
-        flex-direction:
-            column;
-
-        align-items:
-            stretch;
-    }
-
-
-    .promise-button {
-        width: 100%;
-    }
-
-
-    /*
-       Smaller floating hearts
-       on mobile
-    */
-
-    .floating-heart {
-        opacity: 0.8;
-    }
-
-}
-
-
-/* =====================================
-   SMALL MOBILE
-===================================== */
-
-@media (max-width: 480px) {
-
-    .screen {
-        min-height:
-            100svh;
-
-        padding:
-            24px 14px;
-    }
-
-
-    h1 {
-        font-size:
-            2rem;
-    }
-
-
-    h2 {
-        font-size:
-            1.75rem;
-    }
-
-
     .envelope-container {
-        width:
-            min(
-                300px,
-                88vw
-            );
-
-        margin-top:
-            32px;
+        width: min(290px, 86vw);
+        margin-top: 34px;
     }
 
+    .mood-content > div:first-child {
+        font-size: 2.6rem;
+    }
 
-    .primary-button {
+    .mood-button {
+        min-height: 76px;
+        padding: 12px 16px;
+    }
+
+    .mood-button span:first-child {
+        display: inline-block;
+        margin-right: 8px;
+        margin-bottom: 0;
+    }
+
+    .mood-button span:last-child {
+        font-size: 0.92rem;
+    }
+
+    .mood-response,
+    .promise-response {
+        max-width: 100%;
         width: 100%;
-
-        max-width: 300px;
     }
 
+    .letter-content h2 {
+        font-size: clamp(2.6rem, 11vw, 3.8rem);
+    }
 
     .letter-progress {
-        margin-bottom:
-            18px;
+        width: min(90vw, 650px);
+        margin-top: 20px;
+        margin-bottom: 22px;
     }
-
 
     .letter-card {
-        padding:
-            22px 18px;
+        min-height: 360px;
+        padding: 58px 22px 30px;
+        transform: rotate(0deg);
+        border-radius: 7px;
     }
 
-
-    .final-card {
-        padding:
-            26px 20px;
+    .letter-card::before {
+        left: 15px;
+        top: 14px;
+        width: 72px;
+        height: 29px;
+        font-size: 20px;
     }
 
-}
-
-
-/* =====================================
-   VERY SMALL PHONES
-===================================== */
-
-@media (max-width: 350px) {
-
-    .screen {
-        padding:
-            20px 10px;
+    .letter-card::after {
+        right: 12px;
+        bottom: 0;
+        font-size: 4rem;
     }
-
-
-    h1 {
-        font-size:
-            1.8rem;
-    }
-
-
-    h2 {
-        font-size:
-            1.6rem;
-    }
-
-
-    .heart {
-        font-size:
-            2.7rem;
-    }
-
-
-    .envelope-container {
-        width:
-            92vw;
-    }
-
 
     #letterText {
-        font-size:
-            1.18rem;
+        font-size: 1.12rem;
+        font-weight: 400;
+        line-height: 1.75;
     }
 
+    .letter-decoration {
+        font-size: 1.45rem;
+        margin-bottom: 16px;
+    }
+
+    .letter-decoration.bottom {
+        margin-top: 22px;
+    }
+
+    .promise-text {
+        font-size: clamp(1.5rem, 7vw, 2rem);
+    }
+
+    .promise-subtext {
+        font-size: 0.92rem;
+    }
+
+    .final-card {
+        padding: 24px 20px;
+        border-radius: 16px;
+    }
+
+    .final-card p {
+        font-size: 1.15rem;
+        line-height: 1.7;
+    }
+
+    .open-when-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .open-when-card {
+        min-height: 110px;
+        padding: 18px 16px;
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 10px;
+        text-align: left;
+        align-items: center;
+    }
+
+    .open-when-card-icon {
+        grid-row: 1 / 3;
+        margin: 0;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .open-when-card-title {
+        margin-bottom: 0;
+        font-size: 1.4rem;
+    }
+
+    .open-when-card-hint {
+        font-size: 0.8rem;
+    }
+
+    .open-when-envelope {
+        width: min(290px, 86vw);
+        margin-top: 34px;
+    }
+
+    .open-when-letter-content {
+        margin-top: 25px;
+        padding: 24px 20px;
+    }
+
+    .open-when-letter-text {
+        font-size: 1.18rem;
+        line-height: 1.75;
+    }
+
+    .secondary-button {
+        width: min(100%, 300px);
+    }
+
+    .memory-grid,
+    .appreciation-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-item {
+        gap: 12px;
+    }
+
+    .timeline-item strong {
+        font-size: 1.5rem;
+    }
 }
 
 
-/* =====================================
-   LANDSCAPE MOBILE
-===================================== */
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
 
-@media (max-height: 500px)
-and (orientation: landscape) {
+@media (max-width: 380px) {
 
     .screen {
-        min-height:
-            auto;
-
         padding:
-            30px 20px;
+            24px 13px;
     }
 
-
-    .heart {
+    .welcome-content h1 {
         font-size:
-            2.5rem;
-
-        margin-bottom:
-            10px;
+            3.4rem;
     }
-
-
-    .envelope-container {
-        margin-top:
-            20px;
-    }
-
 
     .letter-card {
-        min-height:
-            240px;
+        padding:
+            56px 18px 26px;
     }
 
+    #letterText {
+        font-size: 1.06rem;
+
+        line-height: 1.72;
+    }
+
+    .primary-button {
+        min-width: 170px;
+
+        padding:
+            12px 21px;
+    }
 }
 
 
-/* =====================================
+/* =========================================================
    REDUCED MOTION
-===================================== */
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
 
     *,
     *::before,
     *::after {
-
-        animation-duration:
-            0.01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        transition-duration:
-            0.01ms !important;
-
-        scroll-behavior:
-            auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
-
 
     .floating-heart {
         display: none;
     }
+}
 
+/* =========================================================
+   PERSONAL SECTIONS
+   ========================================================= */
+
+.final-extras {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.extra-button {
+    padding: 9px 14px;
+    border: 1px solid #e8c4cf;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #8c5a6b;
+    cursor: pointer;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.extra-button:hover {
+    transform: translateY(-3px);
+    background: #fff1f5;
+}
+
+.extra-content {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    animation: contentAppear 0.7s ease both;
+}
+
+.extra-intro {
+    margin: 14px auto 28px;
+    color: #806b72;
+    line-height: 1.7;
+}
+
+.memory-grid,
+.appreciation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.memory-card {
+    padding: 0 0 16px;
+    overflow: hidden;
+    border: 1px solid #efd6df;
+    border-radius: 14px;
+    background: #fffdfa;
+    color: #60474f;
+    cursor: pointer;
+    box-shadow: 0 12px 25px rgba(105, 61, 76, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.memory-card:hover {
+    transform: translateY(-6px) rotate(-1deg);
+    box-shadow: 0 18px 32px rgba(105, 61, 76, 0.13);
+}
+
+.memory-image {
+    display: grid;
+    place-items: center;
+    min-height: 150px;
+    margin-bottom: 13px;
+    font-size: 3.5rem;
+}
+
+.memory-image-one { background: linear-gradient(135deg, #ffd7a8, #f5a6ad); }
+.memory-image-two { background: linear-gradient(135deg, #c4e7df, #f9e1ae); }
+.memory-image-three { background: linear-gradient(135deg, #b5b3d9, #edc1ce); }
+
+.memory-caption {
+    font: 1.4rem "Caveat", cursive;
+}
+
+.extra-back-button {
+    margin-top: 28px;
+}
+
+.timeline {
+    position: relative;
+    max-width: 680px;
+    margin: 32px auto 0;
+    text-align: left;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: 17px;
+    width: 2px;
+    background: #edc3cf;
+}
+
+.timeline-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 18px;
+    min-height: 112px;
+}
+
+.timeline-dot {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #e3aabd;
+    border-radius: 50%;
+    background: #fff8fa;
+    color: #c56b85;
+}
+
+.timeline-item strong {
+    display: block;
+    margin-bottom: 6px;
+    font: 1.7rem "Caveat", cursive;
+    color: #60474f;
+}
+
+.timeline-item p {
+    color: #806b72;
+    line-height: 1.6;
+}
+
+.appreciation-card {
+    min-height: 170px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    cursor: pointer;
+    perspective: 900px;
+}
+
+.appreciation-front,
+.appreciation-back {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 170px;
+    padding: 20px;
+    border: 1px solid #efd1db;
+    border-radius: 12px;
+    backface-visibility: hidden;
+    box-shadow: 0 12px 25px rgba(105, 61, 76, 0.08);
+    transition: transform 0.55s ease;
+}
+
+.appreciation-front {
+    background: linear-gradient(135deg, #fff7f8, #ffe8ee);
+    font: 1.7rem "Caveat", cursive;
+    color: #60474f;
+}
+
+.appreciation-back {
+    margin-top: -170px;
+    transform: rotateY(180deg);
+    background: #fffdfa;
+    font: 1.3rem "Caveat", cursive;
+    color: #8c5a6b;
+}
+
+.appreciation-card.flipped .appreciation-front { transform: rotateY(180deg); }
+.appreciation-card.flipped .appreciation-back { transform: rotateY(360deg); }
+
+.memory-dialog[hidden] { display: none; }
+
+.memory-dialog {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(73, 43, 54, 0.35);
+}
+
+.memory-dialog-panel {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: min(520px, 100%);
+    padding: 42px 30px 34px;
+    border: 1px solid #efd6df;
+    border-radius: 14px;
+    background: #fffdfa;
+    text-align: center;
+    box-shadow: 0 22px 55px rgba(73, 43, 54, 0.2);
+}
+
+.memory-dialog-panel::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    content: "";
+    background-image:
+        linear-gradient(rgba(255, 253, 250, 0.68), rgba(255, 253, 250, 0.82)),
+        var(--memory-image);
+    background-position: center;
+    background-size: cover;
+}
+
+.memory-dialog-panel > :not(.dialog-close) {
+    position: relative;
+    z-index: 1;
+}
+
+.memory-dialog-panel h2 { margin-bottom: 14px; font-size: clamp(2.2rem, 6vw, 3.5rem); }
+.memory-dialog-panel p:last-child { color: #806b72; line-height: 1.7; }
+
+.dialog-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: 0;
+    background: transparent;
+    color: #8c5a6b;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 2;
+}
+
+@media (max-width: 600px) {
+    .memory-grid,
+    .appreciation-grid { grid-template-columns: 1fr; }
+    .memory-card { max-width: 360px; width: 100%; margin: auto; }
 }

@@ -1,11 +1,4 @@
 /* =====================================
-   SPECIAL LETTER WEBSITE
-   PHASE 1 — PREMIUM POLISH
-   FEATURE 1 — FLOATING HEARTS
-===================================== */
-
-
-/* =====================================
    GET HTML ELEMENTS
 ===================================== */
 
@@ -23,6 +16,9 @@ const promiseScreen =
 
 const finalScreen =
     document.getElementById("finalScreen");
+
+const openWhenScreen =
+    document.getElementById("openWhenScreen");
 
 
 /* =====================================
@@ -88,6 +84,69 @@ const promiseContinue =
 const readAgainButton =
     document.getElementById("readAgainButton");
 
+const openWhenButton =
+    document.getElementById("openWhenButton");
+
+const openWhenBackButton =
+    document.getElementById("openWhenBackButton");
+
+const extraScreens = document.querySelectorAll("[data-extra-screen]");
+const extraBackButtons = document.querySelectorAll(".extra-back-button");
+const memoryCards = document.querySelectorAll(".memory-card");
+const memoryDialog = document.getElementById("memoryDialog");
+const memoryDialogPanel = document.querySelector(".memory-dialog-panel");
+const memoryDialogTitle = document.getElementById("memoryDialogTitle");
+const memoryDialogText = document.getElementById("memoryDialogText");
+const dialogClose = document.querySelector(".dialog-close");
+const appreciationCards = document.querySelectorAll(".appreciation-card");
+
+
+/* =====================================
+   OPEN WHEN ELEMENTS
+===================================== */
+
+const openWhenCards =
+    document.querySelectorAll(".open-when-card");
+
+const openWhenCardsContainer =
+    document.getElementById("openWhenCards");
+
+const openWhenHeader =
+    document.getElementById("openWhenHeader");
+
+const openWhenLetter =
+    document.getElementById("openWhenLetter");
+
+const openWhenEnvelopeStage =
+    document.getElementById("openWhenEnvelopeStage");
+
+const openWhenEnvelope =
+    document.getElementById("openWhenEnvelope");
+
+const openWhenEnvelopeHint =
+    document.getElementById("openWhenEnvelopeHint");
+
+const openWhenLetterContent =
+    document.getElementById("openWhenLetterContent");
+
+const openWhenLetterTitle =
+    document.getElementById("openWhenLetterTitle");
+
+const openWhenLetterText =
+    document.getElementById("openWhenLetterText");
+
+const openWhenSlideCounter =
+    document.getElementById("openWhenSlideCounter");
+
+const openWhenPrevButton =
+    document.getElementById("openWhenPrevButton");
+
+const openWhenNextButton =
+    document.getElementById("openWhenNextButton");
+
+const openWhenCloseButton =
+    document.getElementById("openWhenCloseButton");
+
 
 /* =====================================
    SAFETY CHECK
@@ -99,6 +158,7 @@ if (
     !letterScreen ||
     !promiseScreen ||
     !finalScreen ||
+    !openWhenScreen ||
     !envelope
 ) {
     console.error(
@@ -118,8 +178,13 @@ function showScreen(screenToShow) {
         moodScreen,
         letterScreen,
         promiseScreen,
-        finalScreen
+        finalScreen,
+        openWhenScreen,
+        document.getElementById("memoriesScreen"),
+        document.getElementById("timelineScreen"),
+        document.getElementById("appreciationScreen")
     ];
+
 
     screens.forEach(function (screen) {
 
@@ -134,7 +199,65 @@ function showScreen(screenToShow) {
         screenToShow.classList.add("active");
     }
 
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    });
+
 }
+
+extraScreens.forEach(function (button) {
+    button.addEventListener("click", function () {
+        showScreen(document.getElementById(button.dataset.extraScreen));
+        heartBurst(4);
+    });
+});
+
+extraBackButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        showScreen(finalScreen);
+        heartBurst(3);
+    });
+});
+
+memoryCards.forEach(function (card) {
+    card.addEventListener("click", function () {
+        memoryDialogPanel.style.setProperty(
+            "--memory-image",
+            `url("${card.dataset.memoryImage}")`
+        );
+        memoryDialogTitle.textContent = card.dataset.memoryTitle;
+        memoryDialogText.textContent = card.dataset.memoryText;
+        memoryDialog.hidden = false;
+        heartBurst(3);
+        dialogClose.focus();
+    });
+});
+
+function closeMemoryDialog() {
+    memoryDialog.hidden = true;
+}
+
+dialogClose.addEventListener("click", closeMemoryDialog);
+memoryDialog.addEventListener("click", function (event) {
+    if (event.target === memoryDialog) {
+        closeMemoryDialog();
+    }
+});
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && !memoryDialog.hidden) {
+        closeMemoryDialog();
+    }
+});
+
+appreciationCards.forEach(function (card) {
+    card.addEventListener("click", function () {
+        card.classList.toggle("flipped");
+        heartBurst(2);
+    });
+});
 
 
 /* =====================================
@@ -250,8 +373,6 @@ function startFloatingHearts() {
     }
 
 
-    /* Create occasional hearts */
-
     floatingHeartInterval =
         setInterval(function () {
 
@@ -290,7 +411,7 @@ startFloatingHearts();
 
 
 /* =====================================
-   ENVELOPE
+   MAIN ENVELOPE
 ===================================== */
 
 let envelopeOpened = false;
@@ -408,6 +529,24 @@ const moodMessages = {
 
 let selectedMood = null;
 
+function resetMoodSelection() {
+    selectedMood = null;
+
+    moodButtons.forEach(function (button) {
+        button.classList.remove("selected");
+        button.setAttribute("aria-pressed", "false");
+    });
+
+    if (moodResponse) {
+        moodResponse.textContent = "";
+        moodResponse.classList.remove("show");
+    }
+
+    if (moodContinue) {
+        moodContinue.classList.remove("show");
+    }
+}
+
 
 /* =====================================
    MOOD BUTTONS
@@ -449,6 +588,13 @@ moodButtons.forEach(function (button) {
             button.classList.add(
                 "selected"
             );
+            button.setAttribute("aria-pressed", "true");
+
+            moodButtons.forEach(function (item) {
+                if (item !== button) {
+                    item.setAttribute("aria-pressed", "false");
+                }
+            });
 
 
             /*
@@ -488,7 +634,6 @@ moodButtons.forEach(function (button) {
 
             /*
              * Small heart burst
-
              */
 
             heartBurst(3);
@@ -652,7 +797,6 @@ function showLetter() {
 
         /*
          * Update progress
-
          */
 
         updateProgress();
@@ -660,7 +804,6 @@ function showLetter() {
 
         /*
          * Fade card back in
-
          */
 
         if (letterCard) {
@@ -744,6 +887,33 @@ const promiseMessages = {
 
 let selectedPromise = null;
 
+function resetExperienceState() {
+    selectedMood = null;
+    selectedPromise = null;
+    currentMessage = 0;
+    envelopeOpened = false;
+
+    if (envelope) {
+        envelope.classList.remove("open");
+    }
+
+    resetMoodSelection();
+    resetPromise();
+    resetOpenWhen();
+
+    if (moodResponse) {
+        moodResponse.textContent = "";
+    }
+
+    if (promiseResponse) {
+        promiseResponse.textContent = "";
+    }
+
+    if (nextButton) {
+        nextButton.textContent = "Keep Reading ❤️";
+    }
+}
+
 
 /* =====================================
    RESET PROMISE
@@ -787,7 +957,6 @@ function resetPromise() {
 
     /*
      * Hide continue
-
      */
 
     if (promiseContinue) {
@@ -857,11 +1026,17 @@ promiseButtons.forEach(
                 button.classList.add(
                     "selected"
                 );
+                button.setAttribute("aria-pressed", "true");
+
+                promiseButtons.forEach(function (item) {
+                    if (item !== button) {
+                        item.setAttribute("aria-pressed", "false");
+                    }
+                });
 
 
                 /*
                  * Promise animation
-
                  */
 
                 const promiseContent =
@@ -920,7 +1095,6 @@ promiseButtons.forEach(
 
                 /*
                  * Show continue
-
                  */
 
                 if (promiseContinue) {
@@ -1018,7 +1192,6 @@ nextButton.addEventListener(
 
             /*
              * Show promise
-
              */
 
             showPromise();
@@ -1123,34 +1296,9 @@ readAgainButton.addEventListener(
     "click",
     function () {
 
-        /*
-         * Start again from letter
+        resetExperienceState();
 
-         */
-
-        currentMessage = 0;
-
-
-        /*
-         * Show letter
-
-         */
-
-        showScreen(letterScreen);
-
-
-        /*
-         * Display first page
-
-         */
-
-        showLetter();
-
-
-        /*
-         * Heart burst
-
-         */
+        showScreen(moodScreen);
 
         heartBurst(5);
 
@@ -1159,7 +1307,1005 @@ readAgainButton.addEventListener(
 
 
 /* =====================================
-   INITIAL STATE
+   OPEN WHEN NAVIGATION
+===================================== */
+
+if (openWhenButton) {
+
+    openWhenButton.addEventListener(
+        "click",
+        function () {
+
+            /*
+             * Open Open When section
+             */
+
+            showOpenWhen();
+
+        }
+    );
+
+}
+
+
+if (openWhenBackButton) {
+
+    openWhenBackButton.addEventListener(
+        "click",
+        function () {
+
+            if (selectedOpenWhen) {
+                resetOpenWhen();
+
+                if (openWhenCardsContainer) {
+                    openWhenCardsContainer.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+
+                return;
+            }
+
+            /*
+             * Return to final screen
+             */
+
+            showScreen(finalScreen);
+
+
+            /*
+             * Small heart burst
+             */
+
+            heartBurst(4);
+
+        }
+    );
+
+}
+
+
+/* =====================================
+   OPEN WHEN MESSAGES
+===================================== */
+
+const openWhenMessages = {
+
+    sad: [
+        {
+            title: "Open When You're Feeling Sad 😔",
+            message: `
+                Hey... ❤️
+
+                <br><br>
+
+                If you are reading this, let this be a gentle
+                reminder that it is okay to feel heavy for a while.
+                You are not failing because your heart is tired.
+
+                <br><br>
+
+                You do not have to be okay all at once.
+                You are allowed to rest, cry, breathe slowly,
+                and take up space in your own life.
+            `
+        },
+        {
+            title: "Open When You're Feeling Sad 😔",
+            message: `
+                Some days feel louder than others.
+                Some sadness feels bigger than the room,
+                but it still does not last forever.
+
+                <br><br>
+
+                Your pain is real, but so is your future.
+                There is still softness waiting for you,
+                even if you cannot see it clearly tonight.
+            `
+        },
+        {
+            title: "Open When You're Feeling Sad 😔",
+            message: `
+                Please be kinder to yourself than you are to
+                the thoughts in your head right now.
+
+                <br><br>
+
+                You do not deserve to be punished for having
+                a difficult day. You deserve gentleness,
+                rest, and a little bit of patience.
+            `
+        },
+        {
+            title: "Open When You're Feeling Sad 😔",
+            message: `
+                One hard moment does not define your whole life.
+                It is just one chapter, not the story.
+
+                <br><br>
+
+                Even in the sadness, you are still the same
+                beautiful soul who deserves love, peace,
+                and light again.
+            `
+        },
+        {
+            title: "Open When You're Feeling Sad 😔",
+            message: `
+                So take a breath. Let your shoulders soften.
+                Let tomorrow be a little kinder to you.
+
+                <br><br>
+
+                You are important. You are cared for.
+                And you are still worthy of healing. 🫶
+            `
+        }
+    ],
+
+    overthinking: [
+        {
+            title: "Open When You're Overthinking 🧠",
+            message: `
+                Hey, overthinker... 🌷
+
+                <br><br>
+
+                I know that spiral. The thoughts keep circling,
+                the what-ifs feel loud, and your mind refuses to rest.
+            `
+        },
+        {
+            title: "Open When You're Overthinking 🧠",
+            message: `
+                Not every thought deserves your attention.
+                Not every worry needs to be solved tonight.
+
+                <br><br>
+
+                You do not have to untangle your whole life
+                in one night. You can simply breathe and let it be.
+            `
+        },
+        {
+            title: "Open When You're Overthinking 🧠",
+            message: `
+                Some questions have no answer today.
+                Some problems are not meant to be solved by force.
+
+                <br><br>
+
+                Trust the process. Let life unfold a little at a time.
+                You do not need to fix everything before you rest.
+            `
+        },
+        {
+            title: "Open When You're Overthinking 🧠",
+            message: `
+                Please remember: your mind is not a judge.
+                It is tired, loud, and overwhelmed sometimes.
+
+                <br><br>
+
+                You are allowed to quiet it down and choose peace.
+            `
+        },
+        {
+            title: "Open When You're Overthinking 🧠",
+            message: `
+                Breathe slowly. Let the spiral loosen.
+                You are not behind. You are still becoming.
+
+                <br><br>
+
+                One breath, one step, one day at a time. ❤️
+            `
+        }
+    ],
+
+    "bad-day": [
+        {
+            title: "Open When You're Having a Bad Day 🌧️",
+            message: `
+                Hey... ❤️
+
+                <br><br>
+
+                So today felt heavy. That is okay.
+                One rough day does not make your life a bad one.
+            `
+        },
+        {
+            title: "Open When You're Having a Bad Day 🌧️",
+            message: `
+                You do not need to fix everything today.
+                Sometimes getting through the next hour is enough.
+
+                <br><br>
+
+                Survival is still strength. Carrying on is still brave.
+            `
+        },
+        {
+            title: "Open When You're Having a Bad Day 🌧️",
+            message: `
+                Drink some water. Eat something small.
+                Step away from the noise for a moment.
+
+                <br><br>
+
+                A little rest can make the world feel less sharp.
+            `
+        },
+        {
+            title: "Open When You're Having a Bad Day 🌧️",
+            message: `
+                Tomorrow does not have to look like today.
+                Bad days pass. Pain changes. Light comes back.
+
+                <br><br>
+
+                You are still worthy of a better day.
+            `
+        },
+        {
+            title: "Open When You're Having a Bad Day 🌧️",
+            message: `
+                Keep going gently. You are doing better than you think.
+
+                <br><br>
+
+                Better days are still ahead of you. ✨
+            `
+        }
+    ],
+
+    motivation: [
+        {
+            title: "Open When You Need Motivation 🫶",
+            message: `
+                Hey you... ❤️
+
+                <br><br>
+
+                I want you to remember how far you have already come.
+                You are not starting from nothing. You are building.
+            `
+        },
+        {
+            title: "Open When You Need Motivation 🫶",
+            message: `
+                You do not need to have everything figured out right now.
+                You only need the next honest step.
+
+                <br><br>
+
+                Small progress still counts. Real progress still counts.
+            `
+        },
+        {
+            title: "Open When You Need Motivation 🫶",
+            message: `
+                You are stronger than the days when you doubt yourself.
+                You are more capable than your tired thoughts say.
+
+                <br><br>
+
+                Keep moving, even if it is slow. Keep going, even if it is quiet.
+            `
+        },
+        {
+            title: "Open When You Need Motivation 🫶",
+            message: `
+                Do not compare your path to someone else's.
+                Your life is not supposed to look exactly like theirs.
+
+                <br><br>
+
+                Your timing is yours, and your growth is still real.
+            `
+        },
+        {
+            title: "Open When You Need Motivation 🫶",
+            message: `
+                So take the next step. Keep believing in yourself.
+                The best parts of your life are still waiting for you.
+
+                <br><br>
+
+                You have got this. ❤️
+            `
+        }
+    ],
+
+    smile: [
+        {
+            title: "Open When You Need a Smile 😊",
+            message: `
+                Okay... this one is simple.
+
+                <br><br>
+
+                Your job is only to smile for a second.
+                Not a big smile. Just a tiny, honest one.
+            `
+        },
+        {
+            title: "Open When You Need a Smile 😊",
+            message: `
+                You are cute. You are kind. You are special.
+                You are also a little too good at overthinking,
+                and that is part of what makes you endearing.
+            `
+        },
+        {
+            title: "Open When You Need a Smile 😊",
+            message: `
+                You deserve at least a few moments of softness.
+                A few moments where your heart feels lighter.
+
+                <br><br>
+
+                Give yourself that gift, even for a second.
+            `
+        },
+        {
+            title: "Open When You Need a Smile 😊",
+            message: `
+                Let the world be a little smaller for a minute.
+                Let your shoulders drop.
+
+                <br><br>
+
+                Even a tiny smile can be a quiet kind of healing.
+            `
+        },
+        {
+            title: "Open When You Need a Smile 😊",
+            message: `
+                There. That was nice, right?
+
+                <br><br>
+
+                Keep a little of that warmth with you. 🌷❤️
+            `
+        }
+    ],
+
+    sleep: [
+        {
+            title: "Open When You Can't Sleep 🌙",
+            message: `
+                Hey... 
+
+                <br><br>
+
+                If you are reading this at night, let it be a reminder
+                that you are allowed to rest without fixing everything first.
+            `
+        },
+        {
+            title: "Open When You Can't Sleep 🌙",
+            message: `
+                Put the thoughts down for now.
+                Tomorrow can wait. Tonight deserves gentleness.
+
+                <br><br>
+
+                The world will still be there when you wake up.
+            `
+        },
+        {
+            title: "Open When You Can't Sleep 🌙",
+            message: `
+                Close your eyes. Let your mind soften.
+                Let your heart stop carrying so much for a moment.
+            `
+        },
+        {
+            title: "Open When You Can't Sleep 🌙",
+            message: `
+                You are allowed to be tired. You are allowed to rest.
+                You are allowed to be at peace, even for a little while.
+            `
+        },
+        {
+            title: "Open When You Can't Sleep 🌙",
+            message: `
+                Good night. Rest well. Tomorrow is another chance to smile.
+
+                <br><br>
+
+                Sweet dreams. 🌙❤️
+            `
+        }
+    ]
+};
+
+
+/* =====================================
+   OPEN WHEN STATE
+===================================== */
+
+let selectedOpenWhen = null;
+
+let openWhenEnvelopeOpened = false;
+
+let openWhenSlideIndex = 0;
+
+
+/* =====================================
+   RESET OPEN WHEN
+===================================== */
+
+function resetOpenWhen() {
+
+    selectedOpenWhen = null;
+
+    openWhenEnvelopeOpened = false;
+    openWhenSlideIndex = 0;
+
+
+    /*
+     * Show cards
+     */
+
+    if (openWhenCardsContainer) {
+
+        openWhenCardsContainer.classList.remove(
+            "hidden"
+        );
+
+    }
+
+    if (openWhenHeader) {
+        openWhenHeader.classList.remove("hidden");
+    }
+
+    if (openWhenBackButton) {
+        openWhenBackButton.textContent = "← Back";
+        openWhenBackButton.style.display = "";
+    }
+
+    if (openWhenEnvelopeStage) {
+        openWhenEnvelopeStage.classList.remove("leaving", "hidden");
+    }
+
+
+    /*
+     * Reset envelope
+     */
+
+    if (openWhenEnvelope) {
+
+        openWhenEnvelope.classList.remove(
+            "open",
+            "envelope-open"
+        );
+
+        openWhenEnvelope.setAttribute(
+            "aria-label",
+            "Open this letter"
+        );
+
+    }
+
+
+    /*
+     * Reset letter
+     */
+
+    if (openWhenLetter) {
+
+        openWhenLetter.classList.remove(
+            "show",
+            "selected",
+            "envelope-open"
+        );
+
+    }
+
+
+    /*
+     * Hide letter content
+     */
+
+    if (openWhenLetterContent) {
+
+        openWhenLetterContent.style.display =
+            "none";
+        openWhenLetterContent.classList.remove("show");
+        openWhenLetterContent.setAttribute("aria-hidden", "true");
+
+    }
+
+
+    /*
+     * Reset hint
+     */
+
+    if (openWhenEnvelopeHint) {
+
+        openWhenEnvelopeHint.textContent =
+            "Tap the envelope to open it 💌";
+
+    }
+
+
+    /*
+     * Reset title
+     */
+
+    if (openWhenLetterTitle) {
+
+        openWhenLetterTitle.textContent =
+            "Open When...";
+
+    }
+
+
+    /*
+     * Clear message
+     */
+
+    if (openWhenLetterText) {
+
+        openWhenLetterText.innerHTML =
+            "";
+
+    }
+
+    if (openWhenPrevButton) {
+        openWhenPrevButton.disabled = true;
+    }
+
+    if (openWhenNextButton) {
+        openWhenNextButton.textContent = "Next →";
+        openWhenNextButton.disabled = true;
+    }
+
+    if (openWhenSlideCounter) {
+        openWhenSlideCounter.textContent = "";
+    }
+
+}
+
+
+function renderOpenWhenSlide() {
+    const slides = selectedOpenWhen && openWhenMessages[selectedOpenWhen]
+        ? openWhenMessages[selectedOpenWhen]
+        : [];
+
+    if (!slides.length) {
+        return;
+    }
+
+    const slide = slides[openWhenSlideIndex] || slides[0];
+
+    if (openWhenLetterTitle) {
+        openWhenLetterTitle.textContent = slide.title;
+    }
+
+    if (openWhenLetterText) {
+        openWhenLetterText.innerHTML = slide.message;
+    }
+
+    if (openWhenPrevButton) {
+        openWhenPrevButton.disabled = openWhenSlideIndex === 0;
+    }
+
+    if (openWhenNextButton) {
+        openWhenNextButton.textContent =
+            openWhenSlideIndex === slides.length - 1
+                ? "Read Again ✨"
+                : "Next →";
+        openWhenNextButton.disabled = !openWhenEnvelopeOpened;
+    }
+
+    if (openWhenSlideCounter) {
+        openWhenSlideCounter.textContent =
+            `Note ${openWhenSlideIndex + 1} of ${slides.length}`;
+    }
+}
+
+
+/* =====================================
+   SHOW OPEN WHEN SCREEN
+===================================== */
+
+function showOpenWhen() {
+
+    resetOpenWhen();
+
+    showScreen(openWhenScreen);
+
+    heartBurst(6);
+
+}
+
+
+/* =====================================
+   SELECT OPEN WHEN CARD
+===================================== */
+
+openWhenCards.forEach(function (card) {
+
+    card.addEventListener(
+        "click",
+        function () {
+
+            const selectedLetter =
+                card.dataset.openWhen;
+
+            const letter =
+                openWhenMessages[selectedLetter];
+
+
+            if (!letter) {
+                return;
+            }
+
+
+            /*
+             * Save selected letter
+             */
+
+            selectedOpenWhen =
+                selectedLetter;
+
+            openWhenSlideIndex = 0;
+
+            renderOpenWhenSlide();
+
+
+            /*
+             * Hide cards
+             */
+
+            if (openWhenCardsContainer) {
+
+                openWhenCardsContainer.classList.add(
+                    "hidden"
+                );
+
+            }
+
+            if (openWhenHeader) {
+                openWhenHeader.classList.add("hidden");
+            }
+
+            if (openWhenBackButton) {
+                openWhenBackButton.textContent = "← Back to Cards";
+                openWhenBackButton.style.display = "";
+            }
+
+            if (openWhenEnvelopeStage) {
+                openWhenEnvelopeStage.classList.remove("leaving", "hidden");
+            }
+
+
+            /*
+             * Reset envelope state
+             */
+
+            openWhenEnvelopeOpened = false;
+
+
+            if (openWhenEnvelope) {
+
+                openWhenEnvelope.classList.remove(
+                    "open",
+                    "envelope-open"
+                );
+
+            }
+
+
+            /*
+             * Show actual letter immediately
+             */
+
+            if (openWhenLetter) {
+
+                openWhenLetter.classList.remove("show", "envelope-open");
+                openWhenLetter.classList.add("selected");
+
+            }
+
+
+            if (openWhenLetterContent) {
+
+                openWhenLetterContent.style.display =
+                    "none";
+                openWhenLetterContent.classList.remove("show");
+
+            }
+
+
+            /*
+             * Reset envelope hint
+             */
+
+            if (openWhenEnvelopeHint) {
+
+                openWhenEnvelopeHint.textContent =
+                    "Tap the envelope to open it 💌";
+
+            }
+
+
+            /*
+             * Heart burst
+             */
+
+            heartBurst(5);
+
+            /*
+             * Scroll to envelope
+             */
+
+            setTimeout(function () {
+
+                if (openWhenEnvelope) {
+
+                    openWhenEnvelope.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                }
+
+            }, 100);
+
+        }
+    );
+
+});
+
+
+/* =====================================
+   OPEN OPEN-WHEN ENVELOPE
+===================================== */
+
+function openOpenWhenEnvelope() {
+
+    /*
+     * Prevent opening without
+     * selecting a card
+     */
+
+    if (
+        !openWhenEnvelope ||
+        !selectedOpenWhen ||
+        openWhenEnvelopeOpened
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+     * Mark envelope as opened
+     */
+
+    openWhenEnvelopeOpened = true;
+
+
+    /*
+     * Start envelope animation
+     */
+
+    openWhenEnvelope.classList.add(
+        "open",
+        "envelope-open"
+    );
+
+
+    /*
+     * Update hint
+     */
+
+    if (openWhenEnvelopeHint) {
+
+        openWhenEnvelopeHint.textContent =
+            "Opening your little letter... ❤️";
+
+    }
+
+
+    /*
+     * Heart burst
+     */
+
+    heartBurst(6);
+
+
+    /*
+     * Reveal letter after
+     * envelope animation
+     */
+
+    setTimeout(function () {
+
+        if (openWhenEnvelopeStage) {
+            openWhenEnvelopeStage.classList.add("leaving");
+        }
+
+        setTimeout(function () {
+
+            if (openWhenEnvelopeStage) {
+                openWhenEnvelopeStage.classList.add("hidden");
+            }
+
+            if (openWhenLetter) {
+                openWhenLetter.classList.add("show", "envelope-open");
+            }
+
+            if (openWhenLetterContent) {
+                openWhenLetterContent.style.display = "block";
+                openWhenLetterContent.setAttribute("aria-hidden", "false");
+
+                requestAnimationFrame(function () {
+                    openWhenLetterContent.classList.add("show");
+                });
+            }
+
+            if (openWhenPrevButton) {
+                openWhenPrevButton.disabled = openWhenSlideIndex === 0;
+            }
+
+            if (openWhenNextButton) {
+                openWhenNextButton.disabled = false;
+            }
+
+            if (openWhenBackButton) {
+                openWhenBackButton.style.display = "none";
+            }
+
+            setTimeout(function () {
+                if (openWhenLetterContent) {
+                    openWhenLetterContent.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            }, 100);
+
+        }, 320);
+
+    }, 1200);
+
+}
+
+
+/* =====================================
+   OPEN-WHEN ENVELOPE CLICK
+===================================== */
+
+if (openWhenEnvelope) {
+
+    openWhenEnvelope.addEventListener(
+        "click",
+        openOpenWhenEnvelope
+    );
+
+}
+
+
+/* =====================================
+   OPEN-WHEN ENVELOPE KEYBOARD
+===================================== */
+
+if (openWhenEnvelope) {
+
+    openWhenEnvelope.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+
+                event.preventDefault();
+
+                openOpenWhenEnvelope();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================
+   CLOSE OPEN-WHEN LETTER
+===================================== */
+
+if (openWhenPrevButton) {
+    openWhenPrevButton.addEventListener("click", function () {
+        if (!selectedOpenWhen || !openWhenEnvelopeOpened) {
+            return;
+        }
+
+        const slides = openWhenMessages[selectedOpenWhen] || [];
+        if (!slides.length) {
+            return;
+        }
+
+        openWhenSlideIndex = Math.max(0, openWhenSlideIndex - 1);
+        renderOpenWhenSlide();
+        heartBurst(2);
+    });
+}
+
+if (openWhenNextButton) {
+    openWhenNextButton.addEventListener("click", function () {
+        if (!selectedOpenWhen || !openWhenEnvelopeOpened) {
+            return;
+        }
+
+        const slides = openWhenMessages[selectedOpenWhen] || [];
+        if (!slides.length) {
+            return;
+        }
+
+        if (openWhenSlideIndex < slides.length - 1) {
+            openWhenSlideIndex += 1;
+            renderOpenWhenSlide();
+            heartBurst(2);
+            return;
+        }
+
+        openWhenSlideIndex = 0;
+        renderOpenWhenSlide();
+        heartBurst(2);
+    });
+}
+
+if (openWhenCloseButton) {
+
+    openWhenCloseButton.addEventListener(
+        "click",
+        function () {
+
+            heartBurst(4);
+
+            resetOpenWhen();
+
+
+            setTimeout(function () {
+
+                if (openWhenCardsContainer) {
+
+                    openWhenCardsContainer.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+
+            }, 100);
+
+        }
+    );
+
+}
+
+
+/* =====================================
+   INITIAL OPEN-WHEN STATE
+===================================== */
+
+resetOpenWhen();
+
+
+/* =====================================
+   INITIAL LETTER STATE
 ===================================== */
 
 currentMessage = 0;

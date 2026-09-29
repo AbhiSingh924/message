@@ -140,8 +140,372 @@
                     <p class="signature"> — Abhi </p>
                 </div>
                 <button id="readAgainButton" class="primary-button" type="button" > Read Again 💌 </button>
+                <button id="openWhenButton" class="secondary-button" type="button"> Open When... 💌 </button>
+                <div class="final-extras" aria-label="More little things">
+                    <button class="extra-button" data-extra-screen="memoriesScreen" type="button">Memories</button>
+                    <button class="extra-button" data-extra-screen="timelineScreen" type="button">Timeline</button>
+                    <button class="extra-button" data-extra-screen="appreciationScreen" type="button">Things I appreciate</button>
+                </div>
             </div>
         </section>
+
+        <section id="memoriesScreen" class="screen">
+            <div class="extra-content">
+                <p class="eyebrow">A few snapshots</p>
+                <h2>Little memories 🌷</h2>
+                <p class="extra-intro">The ordinary moments are often the ones worth keeping.</p>
+                <div class="memory-grid">
+                    <button class="memory-card" type="button" data-memory-title="The easy laughs" data-memory-text="The kind of conversation where time quietly disappears." data-memory-image="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&amp;fit=crop&amp;w=1200&amp;q=80">
+                        <span class="memory-image memory-image-one" aria-hidden="true">☀️</span>
+                        <span class="memory-caption">The easy laughs</span>
+                    </button>
+                    <button class="memory-card" type="button" data-memory-title="Small check-ins" data-memory-text="A simple hello can make an entire day feel lighter." data-memory-image="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&amp;fit=crop&amp;w=1200&amp;q=80">
+                        <span class="memory-image memory-image-two" aria-hidden="true">🌤️</span>
+                        <span class="memory-caption">Small check-ins</span>
+                    </button>
+                    <button class="memory-card" type="button" data-memory-title="The in-between moments" data-memory-text="Nothing fancy, just a moment I am glad happened." data-memory-image="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=1200&amp;q=80">
+                        <span class="memory-image memory-image-three" aria-hidden="true">🌙</span>
+                        <span class="memory-caption">The in-between moments</span>
+                    </button>
+                </div>
+                <button class="secondary-button extra-back-button" type="button">Back to final</button>
+            </div>
+        </section>
+
+        <section id="timelineScreen" class="screen">
+            <div class="extra-content">
+                <p class="eyebrow">Our little timeline</p>
+                <h2>A few points along the way ✨</h2>
+                <div class="timeline">
+                    <article class="timeline-item"><span class="timeline-dot">♡</span><div><strong>First hello</strong><p>Where a small conversation became something worth remembering.</p></div></article>
+                    <article class="timeline-item"><span class="timeline-dot">♡</span><div><strong>The comfortable days</strong><p>When talking felt easy, honest, and a little brighter.</p></div></article>
+                    <article class="timeline-item"><span class="timeline-dot">♡</span><div><strong>Right now</strong><p>A reminder that you are appreciated exactly as you are.</p></div></article>
+                </div>
+                <button class="secondary-button extra-back-button" type="button">Back to final</button>
+            </div>
+        </section>
+
+        <section id="appreciationScreen" class="screen">
+            <div class="extra-content">
+                <p class="eyebrow">A small list</p>
+                <h2>Things I appreciate about you 🫶</h2>
+                <p class="extra-intro">Tap a card to turn it over.</p>
+                <div class="appreciation-grid">
+                    <button class="appreciation-card" type="button"><span class="appreciation-front">Your kindness</span><span class="appreciation-back">You make people feel seen.</span></button>
+                    <button class="appreciation-card" type="button"><span class="appreciation-front">Your strength</span><span class="appreciation-back">You keep going, even quietly.</span></button>
+                    <button class="appreciation-card" type="button"><span class="appreciation-front">Your heart</span><span class="appreciation-back">It is softer and braver than you know.</span></button>
+                </div>
+                <button class="secondary-button extra-back-button" type="button">Back to final</button>
+            </div>
+        </section>
+
+        <div id="memoryDialog" class="memory-dialog" role="dialog" aria-modal="true" aria-labelledby="memoryDialogTitle" hidden>
+            <div class="memory-dialog-panel">
+                <button class="dialog-close" type="button" aria-label="Close memory">×</button>
+                <p class="eyebrow">A closer look</p>
+                <h2 id="memoryDialogTitle"></h2>
+                <p id="memoryDialogText"></p>
+            </div>
+        </div>
+        <!-- ============================= -->
+        <!-- OPEN WHEN SCREEN -->
+        <!-- ============================= -->
+
+        <section id="openWhenScreen" class="screen">
+
+            <div class="open-when-content">
+
+                <!-- OPEN WHEN HEADER -->
+
+                <div id="openWhenHeader" class="open-when-header">
+
+                    <div class="open-when-icon">
+                        💌
+                    </div>
+
+                    <p class="eyebrow">
+                        A few little letters for you
+                    </p>
+
+                    <h2>
+                        Open When... ❤️
+                    </h2>
+
+                    <p class="open-when-intro">
+                        I left a few little messages here for
+                        different moments. Open whichever one
+                        you need right now. 🫶
+                    </p>
+
+                </div>
+
+
+                <!-- ============================= -->
+                <!-- OPEN WHEN CARDS -->
+                <!-- ============================= -->
+
+                <div
+                    id="openWhenCards"
+                    class="open-when-grid"
+                >
+
+                    <!-- SAD -->
+
+                    <button
+                        class="open-when-card"
+                        data-open-when="sad"
+                        type="button"
+                    >
+
+                        <span class="open-when-card-icon">
+                            😔
+                        </span>
+
+                        <span class="open-when-card-title">
+                            Open when you're feeling sad
+                        </span>
+
+                        <span class="open-when-card-hint">
+                            A little reminder for you ❤️
+                        </span>
+
+                    </button>
+
+
+                    <!-- OVERTHINKING -->
+
+                    <button
+                        class="open-when-card"
+                        data-open-when="overthinking"
+                        type="button"
+                    >
+
+                        <span class="open-when-card-icon">
+                            🧠
+                        </span>
+
+                        <span class="open-when-card-title">
+                            Open when you're overthinking
+                        </span>
+
+                        <span class="open-when-card-hint">
+                            Take a breath first 🌷
+                        </span>
+
+                    </button>
+
+
+                    <!-- BAD DAY -->
+
+                    <button
+                        class="open-when-card"
+                        data-open-when="bad-day"
+                        type="button"
+                    >
+
+                        <span class="open-when-card-icon">
+                            🌧️
+                        </span>
+
+                        <span class="open-when-card-title">
+                            Open when you're having a bad day
+                        </span>
+
+                        <span class="open-when-card-hint">
+                            Tomorrow can be different ✨
+                        </span>
+
+                    </button>
+
+
+                    <!-- MOTIVATION -->
+
+                    <button
+                        class="open-when-card"
+                        data-open-when="motivation"
+                        type="button"
+                    >
+
+                        <span class="open-when-card-icon">
+                            🫶
+                        </span>
+
+                        <span class="open-when-card-title">
+                            Open when you need motivation
+                        </span>
+
+                        <span class="open-when-card-hint">
+                            You've got this ❤️
+                        </span>
+
+                    </button>
+
+
+                    <!-- SMILE -->
+
+                    <button
+                        class="open-when-card"
+                        data-open-when="smile"
+                        type="button"
+                    >
+
+                        <span class="open-when-card-icon">
+                            😊
+                        </span>
+
+                        <span class="open-when-card-title">
+                            Open when you need a smile
+                        </span>
+
+                        <span class="open-when-card-hint">
+                            This one's just for you 🌷
+                        </span>
+
+                    </button>
+
+
+                    <!-- SLEEP -->
+
+                    <button
+                        class="open-when-card"
+                        data-open-when="sleep"
+                        type="button"
+                    >
+
+                        <span class="open-when-card-icon">
+                            🌙
+                        </span>
+
+                        <span class="open-when-card-title">
+                            Open when you can't sleep
+                        </span>
+
+                        <span class="open-when-card-hint">
+                            A quiet little note for tonight ✨
+                        </span>
+
+                    </button>
+
+                </div>
+
+                <!-- ============================= -->
+                <!-- OPEN WHEN LETTER -->
+                <!-- ============================= -->
+
+                <div
+                    id="openWhenLetter"
+                    class="open-when-letter"
+                    aria-live="polite"
+                >
+
+                    <!-- ENVELOPE OPENING AREA -->
+
+                    <div id="openWhenEnvelopeStage" class="open-when-envelope-stage envelope-container">
+                        <div
+                            id="openWhenEnvelope"
+                            class="envelope"
+                            role="button"
+                            tabindex="0"
+                            aria-label="Open this letter"
+                        >
+
+                            <div class="envelope-back" aria-hidden="true"></div>
+
+                            <div class="letter-paper envelope-paper" aria-hidden="true">
+                                <span> For you ❤️ </span>
+                            </div>
+
+                            <div class="envelope-front" aria-hidden="true"></div>
+
+                            <div class="envelope-flap" aria-hidden="true"></div>
+
+                            <div class="envelope-heart" aria-hidden="true">❤️</div>
+
+                        </div>
+
+
+                        <p
+                            id="openWhenEnvelopeHint"
+                            class="envelope-hint"
+                        >
+                            Tap the envelope to open it 💌
+                        </p>
+                    </div>
+
+
+                    <!-- ACTUAL LETTER -->
+
+                    <div
+                        id="openWhenLetterContent"
+                        class="open-when-letter-content"
+                        aria-hidden="true"
+                    >
+
+                        <div class="open-when-letter-icon">
+                            💌
+                        </div>
+
+                        <p class="eyebrow">
+                            A little letter for you
+                        </p>
+
+                        <h3 id="openWhenLetterTitle">
+                            Open When...
+                        </h3>
+
+                        <div
+                            id="openWhenLetterText"
+                            class="open-when-letter-text"
+                        >
+                        </div>
+
+                        <p id="openWhenSlideCounter" class="open-when-slide-counter" aria-live="polite"></p>
+
+                        <div class="open-when-nav">
+                            <button
+                                id="openWhenPrevButton"
+                                class="secondary-button open-when-nav-button"
+                                type="button"
+                            >
+                                ← Back
+                            </button>
+
+                            <button
+                                id="openWhenNextButton"
+                                class="primary-button open-when-nav-button"
+                                type="button"
+                            >
+                                Next →
+                            </button>
+                        </div>
+
+                        <button
+                            id="openWhenCloseButton"
+                            class="primary-button"
+                            type="button"
+                        >
+                            Back to Cards 💌
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- BACK TO FINAL -->
+
+                <button
+                    id="openWhenBackButton"
+                    class="secondary-button"
+                    type="button"
+                >
+                    ← Back
+                </button>
+
+            </div>
+
+        </section>
+
+
     </main>
     <script src="script.js"></script>
 </body>
