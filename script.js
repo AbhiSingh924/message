@@ -367,6 +367,10 @@ document.addEventListener("keydown", function (event) {
 
 appreciationCards.forEach(function (card) {
     card.addEventListener("click", function () {
+        card.style.setProperty(
+            "--appreciation-image",
+            `url("${card.dataset.appreciationImage}")`
+        );
         card.classList.toggle("flipped");
         heartBurst(2);
     });
@@ -1979,6 +1983,10 @@ function resetOpenWhen() {
         openWhenNextButton.disabled = true;
     }
 
+    if (openWhenCloseButton) {
+        openWhenCloseButton.hidden = true;
+    }
+
     if (openWhenSlideCounter) {
         openWhenSlideCounter.textContent = "";
     }
@@ -2020,6 +2028,10 @@ function renderOpenWhenSlide() {
     if (openWhenSlideCounter) {
         openWhenSlideCounter.textContent =
             `Note ${openWhenSlideIndex + 1} of ${slides.length}`;
+    }
+
+    if (openWhenCloseButton) {
+        openWhenCloseButton.hidden = openWhenSlideIndex !== slides.length - 1;
     }
 }
 

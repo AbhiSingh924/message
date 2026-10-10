@@ -1982,6 +1982,8 @@ button:focus-visible {
         20px auto 0;
 }
 
+#openWhenCloseButton[hidden] { display: none; }
+
 
 /* =========================================================
    FLOATING HEARTS
@@ -2612,7 +2614,12 @@ button:focus-visible {
     margin-top: -320px;
     overflow-y: auto;
     transform: rotateY(180deg);
-    background: #fffdfa;
+    background-color: #fffdfa;
+    background-image:
+        linear-gradient(rgba(255, 253, 250, 0.72), rgba(255, 253, 250, 0.8)),
+        var(--appreciation-image);
+    background-position: center;
+    background-size: cover;
     font: 1.1rem "Patrick Hand", cursive;
     line-height: 1.5;
     color: #8c5a6b;
