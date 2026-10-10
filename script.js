@@ -97,8 +97,75 @@ const memoryDialog = document.getElementById("memoryDialog");
 const memoryDialogPanel = document.querySelector(".memory-dialog-panel");
 const memoryDialogTitle = document.getElementById("memoryDialogTitle");
 const memoryDialogText = document.getElementById("memoryDialogText");
+const memoryNextButton = document.getElementById("memoryNextButton");
 const dialogClose = document.querySelector(".dialog-close");
 const appreciationCards = document.querySelectorAll(".appreciation-card");
+const timelineSlides = document.querySelectorAll(".timeline-slide");
+const timelineProgress = document.getElementById("timelineProgress");
+const timelineContinueButton = document.getElementById("timelineContinueButton");
+const timelineBackButton = document.getElementById("timelineBackButton");
+let currentTimelineSlide = 0;
+
+const memorySequences = {
+    "in-between": [
+        {
+            title: "The in-between moments",
+            text: "Nothing fancy, just a moment I am glad happened.",
+            image: "assets/img.png"
+        },
+        {
+            title: "A little surprise",
+            text: "Some of the best memories are the ones we never planned🌷✨",
+            image: "assets/img1.jpeg"
+        },
+        {
+            title: "A good day",
+            text: "A little laughter can turn an ordinary day into a good one.☀️🤭",
+            image: "assets/img3.jpeg"
+        },
+        {
+            title: "A favorite coincidence",
+            text: "My favourite little coincidence. 🤍✨",
+            image: "assets/img2.jpeg"
+        },
+        {
+            title: "A little moment under the moon 🌙✨",
+            text: "Some moments feel a little more magical under the same sky. 🤍",
+            image: "assets/img6.png"
+        }
+    ],
+    "easy-laughs": [
+        {
+            title: "The easy laughs",
+            text: "The kind of conversation where time quietly disappears.",
+            image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+            title: "The cute side-glance 🤭🌷",
+            text: "Some conversations happen without saying a word. ✨",
+            image: "assets/img5.png"
+        },
+        {
+            title: "The happy little moment ☀️🤍",
+            text: "Good company makes the simplest moments special. 🌼",
+            image: "assets/img4.png"
+        }
+    ],
+    "small-check-ins": [
+        {
+            title: "Small check-ins",
+            text: "A simple hello can make an entire day feel lighter.",
+            image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+            title: "A little reminder",
+            text: "Life is short; spend it with the people who make you feel loved and bring out the best in you. 🤍🌷",
+            image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1200&q=80"
+        }
+    ]
+};
+let currentMemoryIndex = 0;
+let activeMemorySequence = [];
 
 
 /* =====================================
@@ -209,9 +276,30 @@ function showScreen(screenToShow) {
 
 extraScreens.forEach(function (button) {
     button.addEventListener("click", function () {
-        showScreen(document.getElementById(button.dataset.extraScreen));
+        const screenToShow = document.getElementById(button.dataset.extraScreen);
+        if (screenToShow && screenToShow.id === "timelineScreen") {
+            showTimelineSlide(0);
+        }
+        showScreen(screenToShow);
         heartBurst(4);
     });
+});
+
+function showTimelineSlide(slideIndex) {
+    currentTimelineSlide = slideIndex;
+    timelineSlides.forEach(function (slide, index) {
+        slide.hidden = index !== slideIndex;
+    });
+    timelineProgress.textContent = `Slide ${slideIndex + 1} of ${timelineSlides.length}`;
+    const isLastSlide = slideIndex === timelineSlides.length - 1;
+    timelineContinueButton.hidden = isLastSlide;
+    timelineBackButton.hidden = !isLastSlide;
+}
+
+timelineContinueButton.addEventListener("click", function () {
+    if (currentTimelineSlide < timelineSlides.length - 1) {
+        showTimelineSlide(currentTimelineSlide + 1);
+    }
 });
 
 extraBackButtons.forEach(function (button) {
@@ -223,16 +311,41 @@ extraBackButtons.forEach(function (button) {
 
 memoryCards.forEach(function (card) {
     card.addEventListener("click", function () {
-        memoryDialogPanel.style.setProperty(
-            "--memory-image",
-            `url("${card.dataset.memoryImage}")`
-        );
-        memoryDialogTitle.textContent = card.dataset.memoryTitle;
-        memoryDialogText.textContent = card.dataset.memoryText;
+        const sequenceName = card.dataset.memorySequence;
+        memoryNextButton.hidden = !sequenceName;
+
+        if (sequenceName) {
+            currentMemoryIndex = 0;
+            activeMemorySequence = memorySequences[sequenceName];
+            showMemory(activeMemorySequence[currentMemoryIndex]);
+        } else {
+            activeMemorySequence = [];
+            showMemory({
+                title: card.dataset.memoryTitle,
+                text: card.dataset.memoryText,
+                image: card.dataset.memoryImage
+            });
+        }
+
         memoryDialog.hidden = false;
         heartBurst(3);
         dialogClose.focus();
     });
+});
+
+function showMemory(memory) {
+    memoryDialogPanel.style.setProperty(
+        "--memory-image",
+        `url("${memory.image}")`
+    );
+    memoryDialogTitle.textContent = memory.title;
+    memoryDialogText.textContent = memory.text;
+}
+
+memoryNextButton.addEventListener("click", function () {
+    currentMemoryIndex += 1;
+    showMemory(activeMemorySequence[currentMemoryIndex]);
+    memoryNextButton.hidden = currentMemoryIndex === activeMemorySequence.length - 1;
 });
 
 function closeMemoryDialog() {

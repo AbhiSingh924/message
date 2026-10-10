@@ -155,15 +155,15 @@
                 <h2>Little memories 🌷</h2>
                 <p class="extra-intro">The ordinary moments are often the ones worth keeping.</p>
                 <div class="memory-grid">
-                    <button class="memory-card" type="button" data-memory-title="The easy laughs" data-memory-text="The kind of conversation where time quietly disappears." data-memory-image="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&amp;fit=crop&amp;w=1200&amp;q=80">
+                    <button class="memory-card" type="button" data-memory-title="The easy laughs" data-memory-text="The kind of conversation where time quietly disappears." data-memory-image="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" data-memory-sequence="easy-laughs">
                         <span class="memory-image memory-image-one" aria-hidden="true">☀️</span>
                         <span class="memory-caption">The easy laughs</span>
                     </button>
-                    <button class="memory-card" type="button" data-memory-title="Small check-ins" data-memory-text="A simple hello can make an entire day feel lighter." data-memory-image="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&amp;fit=crop&amp;w=1200&amp;q=80">
+                    <button class="memory-card" type="button" data-memory-title="Small check-ins" data-memory-text="A simple hello can make an entire day feel lighter." data-memory-image="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" data-memory-sequence="small-check-ins">
                         <span class="memory-image memory-image-two" aria-hidden="true">🌤️</span>
                         <span class="memory-caption">Small check-ins</span>
                     </button>
-                    <button class="memory-card" type="button" data-memory-title="The in-between moments" data-memory-text="Nothing fancy, just a moment I am glad happened." data-memory-image="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=1200&amp;q=80">
+                    <button class="memory-card" type="button" data-memory-title="The in-between moments" data-memory-text="Nothing fancy, just a moment I am glad happened." data-memory-image="assets/img.png" data-memory-sequence="in-between">
                         <span class="memory-image memory-image-three" aria-hidden="true">🌙</span>
                         <span class="memory-caption">The in-between moments</span>
                     </button>
@@ -174,26 +174,49 @@
 
         <section id="timelineScreen" class="screen">
             <div class="extra-content">
-                <p class="eyebrow">Our little timeline</p>
-                <h2>A few points along the way ✨</h2>
-                <div class="timeline">
-                    <article class="timeline-item"><span class="timeline-dot">♡</span><div><strong>First hello</strong><p>Where a small conversation became something worth remembering.</p></div></article>
-                    <article class="timeline-item"><span class="timeline-dot">♡</span><div><strong>The comfortable days</strong><p>When talking felt easy, honest, and a little brighter.</p></div></article>
-                    <article class="timeline-item"><span class="timeline-dot">♡</span><div><strong>Right now</strong><p>A reminder that you are appreciated exactly as you are.</p></div></article>
+                <p class="eyebrow">Our Story</p>
+                <h2>From Classmates to Best Friends ❤️</h2>
+                <p id="timelineProgress" class="timeline-progress" aria-live="polite">Slide 1 of 4</p>
+                <div class="timeline" id="timelineSlides">
+                    <div class="timeline-slide">
+                        <article class="timeline-item"><span class="timeline-dot" aria-hidden="true">♡</span><div><strong>2015–2018 | Just Classmates</strong><p>We were classmates at school, but barely interacted. Maybe a word or two while rehearsing a play for our school’s alumni meet, but nothing more than that.</p></div></article>
+                        <article class="timeline-item"><span class="timeline-dot" aria-hidden="true">♡</span><div><strong>September 2021 | The First “Hii”</strong><p>A simple “Hii” on Instagram. Neither of us knew that this little interaction would eventually lead to such a meaningful bond.</p></div></article>
+                        <article class="timeline-item"><span class="timeline-dot" aria-hidden="true">♡</span><div><strong>A Long Gap | Life Went On</strong><p>After that, we drifted apart again, with no regular conversations.</p></div></article>
+                    </div>
+                    <div class="timeline-slide" hidden>
+                        <article class="timeline-item"><span class="timeline-dot" aria-hidden="true">♡</span><div><strong>January 2023 | The Second Interaction</strong><p>We started talking again, and this time, things slowly picked up. Long phone calls and late-night video calls became a part of our routine. Conversations started lasting longer, and we began getting to know each other better.</p></div></article>
+                        <article class="timeline-item"><span class="timeline-dot" aria-hidden="true">♡</span><div><strong>After May 2023 | Another Long Gap</strong><p>Life took its own course. I got into a relationship, and our conversations became occasional — a few chats and phone calls here and there, with long gaps in between.</p></div></article>
+                        <article class="timeline-item"><span class="timeline-dot" aria-hidden="true">♡</span><div><strong>April 2024 | Finding Our Way Back</strong><p>After my breakup, we started having proper conversations again. Slowly, the connection we had once shared began finding its way back into our lives, and this time, it continued.</p></div></article>
+                    </div>
+                    <div class="timeline-slide" hidden>
+                        <article class="timeline-item"><span class="timeline-dot" aria-hidden="true">♡</span><div><strong>February 2025 | A Birthday to Remember</strong><p>On her birthday, we had a long video call, and somehow, the calls continued throughout the day. It was one of those moments when talking didn’t feel like an effort; it just felt natural.</p></div></article>
+                        <article class="timeline-item"><span class="timeline-dot" aria-hidden="true">♡</span><div><strong>April 2025 | Our First Meeting</strong><p>We finally met in person for the first time. Our bond grew stronger, and we started understanding each other on a deeper level. There were a few little ups and downs, as there are in any bond, but nothing major — just small moments that we worked through.</p></div></article>
+                        <article class="timeline-item"><span class="timeline-dot" aria-hidden="true">♡</span><div><strong>September 2025 | A Whole Night on Call</strong><p>We spent the entire night on a call, and something about our dynamic shifted a little. The comfort grew, the conversations felt even more natural, and our bond became stronger than before.</p></div></article>
+                    </div>
+                    <div class="timeline-slide" hidden>
+                        <article class="timeline-item"><span class="timeline-dot" aria-hidden="true">♡</span><div><strong>October 2025 | When Things Felt Different</strong><p>We met again, and this time, something genuinely changed. We got much closer, spent time visiting different places, shared countless funny moments, and created some really cute memories together. Being around each other started feeling even more special, effortless, and comfortable.</p></div></article>
+                        <article class="timeline-item"><span class="timeline-dot" aria-hidden="true">♡</span><div><strong>Since Then | No Looking Back</strong><p>And since then, there’s been no looking back. We have become the best-friends duo who understand each other, share the silliest moments, have meaningful conversations, and feel completely comfortable being ourselves around each other.</p><p>Somehow, after all the gaps, missed chances to talk, and unexpected reunions, we’ve found our way into each other’s lives in a way that feels right.</p><p>From school classmates to the kind of best friends who feel like a safe place — it’s been quite a journey. 🤍</p></div></article>
+                    </div>
                 </div>
-                <button class="secondary-button extra-back-button" type="button">Back to final</button>
+                <div class="timeline-actions">
+                    <button id="timelineContinueButton" class="primary-button" type="button">Continue →</button>
+                    <button id="timelineBackButton" class="secondary-button extra-back-button" type="button" hidden>Back to final</button>
+                </div>
             </div>
         </section>
 
         <section id="appreciationScreen" class="screen">
             <div class="extra-content">
                 <p class="eyebrow">A small list</p>
-                <h2>Things I appreciate about you 🫶</h2>
+                <h2>Things I appreciate about you 🫶🏻</h2>
                 <p class="extra-intro">Tap a card to turn it over.</p>
                 <div class="appreciation-grid">
-                    <button class="appreciation-card" type="button"><span class="appreciation-front">Your kindness</span><span class="appreciation-back">You make people feel seen.</span></button>
-                    <button class="appreciation-card" type="button"><span class="appreciation-front">Your strength</span><span class="appreciation-back">You keep going, even quietly.</span></button>
-                    <button class="appreciation-card" type="button"><span class="appreciation-front">Your heart</span><span class="appreciation-back">It is softer and braver than you know.</span></button>
+                    <button class="appreciation-card" type="button"><span class="appreciation-front">Your kindness 🌷</span><span class="appreciation-back">You have a way of making people feel cared for through the little things. It's not always about grand gestures; sometimes, it's simply the way you talk and listen.</span></button>
+                    <button class="appreciation-card" type="button"><span class="appreciation-front">Your strength 🌻</span><span class="appreciation-back">I admire how you keep going, balancing your studies and everything else life brings your way. Even on tiring days, you keep showing up and doing your best.</span></button>
+                    <button class="appreciation-card" type="button"><span class="appreciation-front">Your heart 🤍</span><span class="appreciation-back">I appreciate how genuine you are. There's something special about having someone with whom conversations can feel honest, comfortable, and completely natural.</span></button>
+                    <button class="appreciation-card" type="button"><span class="appreciation-front">The comfort you bring ☁️</span><span class="appreciation-back">With you, even the simplest conversations can turn into hours of talking. There's no pressure to be someone else, and that's a kind of comfort I truly value.</span></button>
+                    <button class="appreciation-card" type="button"><span class="appreciation-front">Your silly side 🤭</span><span class="appreciation-back">From random conversations to funny moments when we meet, you make ordinary experiences memorable. I love how we can laugh over the smallest, most ridiculous things.</span></button>
+                    <button class="appreciation-card" type="button"><span class="appreciation-front">Our bond 🧿</span><span class="appreciation-back">After all the gaps, unexpected reunions, and little twists along the way, I'm glad we found our way back into each other's lives. I appreciate the understanding and trust we've built, and how naturally we've become each other's safe space.</span></button>
                 </div>
                 <button class="secondary-button extra-back-button" type="button">Back to final</button>
             </div>
@@ -205,6 +228,7 @@
                 <p class="eyebrow">A closer look</p>
                 <h2 id="memoryDialogTitle"></h2>
                 <p id="memoryDialogText"></p>
+                <button id="memoryNextButton" class="secondary-button" type="button" hidden>Next</button>
             </div>
         </div>
         <!-- ============================= -->

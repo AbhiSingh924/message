@@ -2502,13 +2502,18 @@ button:focus-visible {
 }
 
 .timeline {
-    position: relative;
     max-width: 680px;
     margin: 32px auto 0;
     text-align: left;
 }
 
-.timeline::before {
+.timeline-slide[hidden] { display: none; }
+
+.timeline-slide {
+    position: relative;
+}
+
+.timeline-slide::before {
     content: "";
     position: absolute;
     top: 8px;
@@ -2517,6 +2522,27 @@ button:focus-visible {
     width: 2px;
     background: #edc3cf;
 }
+
+.timeline-progress {
+    margin-top: 18px;
+    color: #806b72;
+    text-align: center;
+}
+
+.timeline-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 18px;
+}
+
+.timeline-actions .primary-button,
+.timeline-actions .secondary-button {
+    margin: 0;
+}
+
+#timelineBackButton[hidden] { display: none; }
 
 .timeline-item {
     position: relative;
@@ -2552,7 +2578,7 @@ button:focus-visible {
 }
 
 .appreciation-card {
-    min-height: 170px;
+    height: 320px;
     border: 0;
     border-radius: 12px;
     background: transparent;
@@ -2566,8 +2592,8 @@ button:focus-visible {
     place-items: center;
     width: 100%;
     height: 100%;
-    min-height: 170px;
-    padding: 20px;
+    min-height: 320px;
+    padding: 22px;
     border: 1px solid #efd1db;
     border-radius: 12px;
     backface-visibility: hidden;
@@ -2577,15 +2603,18 @@ button:focus-visible {
 
 .appreciation-front {
     background: linear-gradient(135deg, #fff7f8, #ffe8ee);
-    font: 1.7rem "Caveat", cursive;
+    font: 1.6rem "Caveat", cursive;
+    line-height: 1.25;
     color: #60474f;
 }
 
 .appreciation-back {
-    margin-top: -170px;
+    margin-top: -320px;
+    overflow-y: auto;
     transform: rotateY(180deg);
     background: #fffdfa;
-    font: 1.3rem "Caveat", cursive;
+    font: 1.1rem "Patrick Hand", cursive;
+    line-height: 1.5;
     color: #8c5a6b;
 }
 
@@ -2635,7 +2664,8 @@ button:focus-visible {
 }
 
 .memory-dialog-panel h2 { margin-bottom: 14px; font-size: clamp(2.2rem, 6vw, 3.5rem); }
-.memory-dialog-panel p:last-child { color: #806b72; line-height: 1.7; }
+.memory-dialog-panel #memoryDialogText { color: #806b72; line-height: 1.7; }
+#memoryNextButton[hidden] { display: none; }
 
 .dialog-close {
     position: absolute;
