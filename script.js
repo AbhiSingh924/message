@@ -266,6 +266,12 @@ function showScreen(screenToShow) {
         screenToShow.classList.add("active");
     }
 
+    if (isHeartJourneyScreen(screenToShow)) {
+        startFloatingHearts();
+    } else {
+        stopFloatingHearts();
+    }
+
     window.scrollTo({
         top: 0,
         left: 0,
@@ -382,7 +388,29 @@ appreciationCards.forEach(function (card) {
    FLOATING HEART SYSTEM
 ===================================== */
 
+const heartJourneyScreens = [
+    welcomeScreen,
+    moodScreen,
+    letterScreen,
+    promiseScreen,
+    finalScreen
+];
+
+let floatingHeartInterval = null;
+
+
+function isHeartJourneyScreen(screen) {
+    return heartJourneyScreens.includes(screen);
+}
+
+
 function createFloatingHeart() {
+
+    if (!heartJourneyScreens.some(function (screen) {
+        return screen.classList.contains("active");
+    })) {
+        return;
+    }
 
     const heart =
         document.createElement("span");
@@ -459,6 +487,10 @@ function createFloatingHeart() {
 
 function heartBurst(amount = 5) {
 
+    if (!floatingHeartInterval) {
+        return;
+    }
+
     for (
         let i = 0;
         i < amount;
@@ -476,53 +508,28 @@ function heartBurst(amount = 5) {
 }
 
 
-/* =====================================
-   START BACKGROUND HEARTS
-===================================== */
-
-let floatingHeartInterval = null;
-
-
 function startFloatingHearts() {
-
     if (floatingHeartInterval) {
         return;
     }
 
-
-    floatingHeartInterval =
-        setInterval(function () {
-
-            createFloatingHeart();
-
-        }, 1800);
-
+    floatingHeartInterval = setInterval(function () {
+        createFloatingHeart();
+    }, 1800);
 }
 
-
-/* =====================================
-   STOP BACKGROUND HEARTS
-===================================== */
 
 function stopFloatingHearts() {
-
-    if (!floatingHeartInterval) {
-        return;
+    if (floatingHeartInterval) {
+        clearInterval(floatingHeartInterval);
+        floatingHeartInterval = null;
     }
 
-
-    clearInterval(
-        floatingHeartInterval
-    );
-
-    floatingHeartInterval = null;
-
+    document.querySelectorAll(".floating-heart").forEach(function (heart) {
+        heart.remove();
+    });
 }
 
-
-/* =====================================
-   START HEART EFFECT
-===================================== */
 
 startFloatingHearts();
 
