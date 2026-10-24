@@ -49,6 +49,9 @@
                 <p class="small-note">
                     Take your time. There's no rush. 🌷
                 </p>
+                <button class="hidden-message-trigger taped-heart-trigger welcome-hidden-heart" type="button"
+                    data-hidden-title="A tiny reminder" data-hidden-message="You deserve the same gentleness and care that you give to everyone around you. ❤️"
+                    aria-label="Open a tiny hidden message">♥</button>
             
             </div>
         </section>
@@ -95,7 +98,9 @@
                     </div>
                     <div class="letter-card" id="letterCard" >
 
-                        <div class="letter-decoration" aria-hidden="true" > ✦ </div>
+                        <button class="letter-decoration hidden-message-trigger taped-heart-trigger" type="button"
+                            data-hidden-title="A little reminder" data-hidden-message="Even on the days you cannot see it, you bring a little light to the people around you. ✨"
+                            aria-label="Open a hidden heart message">♥</button>
                         <p id="letterText" aria-live="polite" >
                             Your message will appear here.
                         </p>
@@ -128,12 +133,18 @@
         </section>
         <section id="finalScreen" class="screen" >
             <div class="final-content">
-                <div class="heart" aria-hidden="true" > 🫶 </div>
+                <div class="heart" data-easter-egg-heart role="button" tabindex="0"
+                    aria-label="Tap this heart five times for a secret note"> 🫶 </div>
                 <p class="eyebrow"> One last thing </p>
                 <h2> That's all I wanted to say. </h2>
                 <div class="final-card">
+                    <button class="hidden-message-trigger taped-heart-trigger final-taped-heart" type="button"
+                        data-hidden-title="A tiny reminder"
+                        data-hidden-message="I'm glad our paths crossed. Keep being the lovely person you are. 💗"
+                        aria-label="Open a hidden heart message">♥</button>
                     <h3> Whatever happens, don't forget... </h3>
-                    <p> You are special. ❤️ </p> 
+                    <p> You are <button class="hidden-message-trigger hidden-word-trigger" type="button"
+                        data-hidden-title="You are special" data-hidden-message="You make ordinary moments feel warmer just by being yourself. Never forget how appreciated you are. ❤️">special</button>. ❤️ </p> 
                     <p> Take care of yourself. </p> 
                     <p> Keep smiling. </p>
                     <p> Better days are coming. ✨ </p>
@@ -145,6 +156,7 @@
                     <button class="extra-button" data-extra-screen="memoriesScreen" type="button">Memories</button>
                     <button class="extra-button" data-extra-screen="timelineScreen" type="button">Timeline</button>
                     <button class="extra-button" data-extra-screen="appreciationScreen" type="button">Things I appreciate</button>
+                    <button class="extra-button" data-extra-screen="moodGardenScreen" type="button">Mood Garden 🌷</button>
                 </div>
             </div>
         </section>
@@ -222,6 +234,35 @@
             </div>
         </section>
 
+        <section id="moodGardenScreen" class="screen">
+            <div class="extra-content">
+                <p class="eyebrow">A little place to pause</p>
+                <h2>Mood Garden 🌷</h2>
+                <p class="extra-intro">Choose a flower and take the message you need today.</p>
+                <div class="mood-garden" aria-label="Choose a flower to reveal a message">
+                    <button class="garden-flower" type="button" data-flower-title="A gentle tulip"
+                        data-flower-message="You do not have to have everything figured out today. One small step is enough. 🌷">
+                        <span aria-hidden="true">🌷</span><span>Tulip</span>
+                    </button>
+                    <button class="garden-flower" type="button" data-flower-title="A bright sunflower"
+                        data-flower-message="You have made it through hard days before. There is strength in you, even when you feel tired. 🌻">
+                        <span aria-hidden="true">🌻</span><span>Sunflower</span>
+                    </button>
+                    <button class="garden-flower" type="button" data-flower-title="A little daisy"
+                        data-flower-message="You are allowed to rest. Your worth is not measured by how much you get done. 🌼">
+                        <span aria-hidden="true">🌼</span><span>Daisy</span>
+                    </button>
+                    <button class="garden-flower" type="button" data-flower-title="A calm blossom"
+                        data-flower-message="Take a slow breath. This moment will pass, and you do not have to face it all at once. 🌸">
+                        <span aria-hidden="true">🌸</span><span>Blossom</span>
+                    </button>
+                </div>
+                <p id="gardenResponse" class="garden-response" aria-live="polite">Your garden is here whenever you need a kind word.</p>
+
+                <button class="secondary-button extra-back-button" type="button">Back to final</button>
+            </div>
+        </section>
+
         <div id="memoryDialog" class="memory-dialog" role="dialog" aria-modal="true" aria-labelledby="memoryDialogTitle" hidden>
             <div class="memory-dialog-panel">
                 <button class="dialog-close" type="button" aria-label="Close memory">×</button>
@@ -275,6 +316,7 @@
 
                     <!-- SAD -->
 
+                    <div class="open-when-card-wrap">
                     <button
                         class="open-when-card"
                         data-open-when="sad"
@@ -294,10 +336,16 @@
                         </span>
 
                     </button>
+                    <button class="hidden-message-trigger taped-heart-trigger open-when-taped-heart" type="button"
+                        data-hidden-title="A little reminder for a sad moment"
+                        data-hidden-message="If today feels heavy, you don't have to carry everything at once. 💗"
+                        aria-label="Open a hidden message for a sad moment">♥</button>
+                    </div>
 
 
                     <!-- OVERTHINKING -->
 
+                    <div class="open-when-card-wrap">
                     <button
                         class="open-when-card"
                         data-open-when="overthinking"
@@ -317,10 +365,16 @@
                         </span>
 
                     </button>
+                    <button class="hidden-message-trigger taped-heart-trigger open-when-taped-heart" type="button"
+                        data-hidden-title="A note for an overthinking moment"
+                        data-hidden-message="You don't have to solve everything right now. Take one slow breath and let this moment be enough. 🌷"
+                        aria-label="Open a hidden message for an overthinking moment">♥</button>
+                    </div>
 
 
                     <!-- BAD DAY -->
 
+                    <div class="open-when-card-wrap">
                     <button
                         class="open-when-card"
                         data-open-when="bad-day"
@@ -340,10 +394,16 @@
                         </span>
 
                     </button>
+                    <button class="hidden-message-trigger taped-heart-trigger open-when-taped-heart" type="button"
+                        data-hidden-title="A note for a difficult day"
+                        data-hidden-message="One hard day does not define your whole story. Give yourself permission to rest. ✨"
+                        aria-label="Open a hidden message for a difficult day">♥</button>
+                    </div>
 
 
                     <!-- MOTIVATION -->
 
+                    <div class="open-when-card-wrap">
                     <button
                         class="open-when-card"
                         data-open-when="motivation"
@@ -363,10 +423,16 @@
                         </span>
 
                     </button>
+                    <button class="hidden-message-trigger taped-heart-trigger open-when-taped-heart" type="button"
+                        data-hidden-title="A note for when you need motivation"
+                        data-hidden-message="You've made it through so much already. Keep going at your own pace; small steps count. ❤️"
+                        aria-label="Open a hidden message for motivation">♥</button>
+                    </div>
 
 
                     <!-- SMILE -->
 
+                    <div class="open-when-card-wrap">
                     <button
                         class="open-when-card"
                         data-open-when="smile"
@@ -386,10 +452,16 @@
                         </span>
 
                     </button>
+                    <button class="hidden-message-trigger taped-heart-trigger open-when-taped-heart" type="button"
+                        data-hidden-title="A note to make you smile"
+                        data-hidden-message="Here's a little reminder that someone is rooting for you, exactly as you are. 🌷"
+                        aria-label="Open a hidden message to make you smile">♥</button>
+                    </div>
 
 
                     <!-- SLEEP -->
 
+                    <div class="open-when-card-wrap">
                     <button
                         class="open-when-card"
                         data-open-when="sleep"
@@ -409,6 +481,11 @@
                         </span>
 
                     </button>
+                    <button class="hidden-message-trigger taped-heart-trigger open-when-taped-heart" type="button"
+                        data-hidden-title="A quiet note for tonight"
+                        data-hidden-message="You can set today's worries down for now. Let yourself rest; tomorrow can wait until it arrives. 🌙"
+                        aria-label="Open a hidden message for tonight">♥</button>
+                    </div>
 
                 </div>
 

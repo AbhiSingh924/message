@@ -1481,9 +1481,15 @@ button:focus-visible {
     display: none;
 }
 
+.open-when-card-wrap {
+    position: relative;
+    min-width: 0;
+}
+
 .open-when-card {
     position: relative;
 
+    width: 100%;
     min-height: 150px;
 
     padding:
@@ -1521,6 +1527,10 @@ button:focus-visible {
 
     box-shadow:
         0 17px 32px rgba(105, 61, 76, 0.12);
+}
+
+.open-when-card-wrap .open-when-card {
+    height: 100%;
 }
 
 .open-when-card-icon {
@@ -2301,7 +2311,7 @@ button:focus-visible {
 
     .open-when-card {
         min-height: 110px;
-        padding: 18px 16px;
+        padding: 18px 42px 18px 16px;
         display: grid;
         grid-template-columns: 50px 1fr;
         grid-template-rows: auto auto;
@@ -2638,6 +2648,12 @@ button:focus-visible {
     place-items: center;
     padding: 20px;
     background: rgba(73, 43, 54, 0.35);
+    animation: memoryDialogFadeIn 180ms ease both;
+}
+
+.memory-dialog.closing {
+    pointer-events: none;
+    animation: memoryDialogFadeOut 180ms ease both;
 }
 
 .memory-dialog-panel {
@@ -2651,6 +2667,31 @@ button:focus-visible {
     background: #fffdfa;
     text-align: center;
     box-shadow: 0 22px 55px rgba(73, 43, 54, 0.2);
+    animation: memoryDialogPanelIn 220ms ease both;
+}
+
+.memory-dialog.closing .memory-dialog-panel {
+    animation: memoryDialogPanelOut 180ms ease both;
+}
+
+@keyframes memoryDialogFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes memoryDialogFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes memoryDialogPanelIn {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes memoryDialogPanelOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: translateY(5px) scale(0.98); }
 }
 
 .memory-dialog-panel::before {
@@ -2686,8 +2727,174 @@ button:focus-visible {
     z-index: 2;
 }
 
+.mood-garden {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    max-width: 760px;
+    margin: 30px auto 18px;
+}
+
+.garden-flower {
+    display: grid;
+    place-items: center;
+    gap: 8px;
+    min-height: 150px;
+    padding: 18px 12px;
+    border: 1px solid #efd1db;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #fffafd, #fff0f4);
+    color: #76545f;
+    font: 1.4rem "Caveat", cursive;
+    cursor: pointer;
+    box-shadow: 0 12px 25px rgba(105, 61, 76, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.garden-flower > span:first-child {
+    display: block;
+    font-size: 3rem;
+    transition: transform 0.35s ease;
+}
+
+.garden-flower:hover,
+.garden-flower.bloomed {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 32px rgba(105, 61, 76, 0.14);
+}
+
+.garden-flower.bloomed > span:first-child {
+    transform: scale(1.2) rotate(-8deg);
+}
+
+.garden-response {
+    min-height: 1.7em;
+    color: #806b72;
+    line-height: 1.7;
+}
+
+#moodGardenScreen {
+    overflow-y: auto;
+}
+
+.welcome-hidden-heart {
+    display: block;
+    margin: 10px auto 0;
+}
+
+.letter-decoration.hidden-message-trigger {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    z-index: 2;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    font-size: 0.9rem;
+    line-height: 24px;
+}
+
+.hidden-message-trigger {
+    border: 0;
+    background: transparent;
+    color: #c87991;
+    cursor: pointer;
+}
+
+.taped-heart-trigger {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    color: rgba(190, 105, 130, 0.68);
+    font-size: 0.9rem;
+    line-height: 1;
+    text-shadow: 0 0 5px rgba(213, 133, 154, 0.18);
+    animation: tapedHeartGlow 4.5s ease-in-out infinite;
+    transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
+}
+
+.taped-heart-trigger::before,
+.taped-heart-trigger::after {
+    position: absolute;
+    z-index: 1;
+    width: 10px;
+    height: 4px;
+    border-radius: 1px;
+    background: rgba(232, 208, 181, 0.72);
+    content: "";
+    pointer-events: none;
+}
+
+.taped-heart-trigger::before {
+    top: 3px;
+    left: 2px;
+    transform: rotate(-38deg);
+}
+
+.taped-heart-trigger::after {
+    right: 2px;
+    bottom: 3px;
+    transform: rotate(-38deg);
+}
+
+.taped-heart-trigger:hover,
+.taped-heart-trigger:focus-visible {
+    color: #b45c76;
+    transform: scale(1.12);
+    text-shadow: 0 0 8px rgba(213, 133, 154, 0.4);
+}
+
+@keyframes tapedHeartGlow {
+    0%, 100% { text-shadow: 0 0 3px rgba(213, 133, 154, 0.12); }
+    50% { text-shadow: 0 0 7px rgba(213, 133, 154, 0.3); }
+}
+
+.open-when-taped-heart {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    z-index: 2;
+    width: 22px;
+    height: 22px;
+    font-size: 0.78rem;
+}
+
+.final-taped-heart {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+.final-card {
+    position: relative;
+}
+
+.hidden-word-trigger {
+    font: inherit;
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+}
+
+.hidden-word-trigger:hover {
+    color: #a94f6d;
+}
+
+.final-content [data-easter-egg-heart] {
+    cursor: pointer;
+}
+
+.final-content [data-easter-egg-heart]:focus-visible {
+    outline: 3px solid rgba(207, 120, 145, 0.35);
+    outline-offset: 5px;
+    border-radius: 12px;
+}
+
 @media (max-width: 600px) {
     .memory-grid,
     .appreciation-grid { grid-template-columns: 1fr; }
     .memory-card { max-width: 360px; width: 100%; margin: auto; }
+    .mood-garden { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

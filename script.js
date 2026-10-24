@@ -99,7 +99,13 @@ const memoryDialogTitle = document.getElementById("memoryDialogTitle");
 const memoryDialogText = document.getElementById("memoryDialogText");
 const memoryNextButton = document.getElementById("memoryNextButton");
 const dialogClose = document.querySelector(".dialog-close");
+let memoryDialogCloseTimer = null;
+let memoryDialogOpener = null;
 const appreciationCards = document.querySelectorAll(".appreciation-card");
+const gardenFlowers = document.querySelectorAll(".garden-flower");
+const gardenResponse = document.getElementById("gardenResponse");
+const hiddenMessageTriggers = document.querySelectorAll(".hidden-message-trigger");
+const easterEggHeart = document.querySelector("[data-easter-egg-heart]");
 const timelineSlides = document.querySelectorAll(".timeline-slide");
 const timelineProgress = document.getElementById("timelineProgress");
 const timelineContinueButton = document.getElementById("timelineContinueButton");
@@ -249,7 +255,8 @@ function showScreen(screenToShow) {
         openWhenScreen,
         document.getElementById("memoriesScreen"),
         document.getElementById("timelineScreen"),
-        document.getElementById("appreciationScreen")
+        document.getElementById("appreciationScreen"),
+        document.getElementById("moodGardenScreen")
     ];
 
 
@@ -333,9 +340,8 @@ memoryCards.forEach(function (card) {
             });
         }
 
-        memoryDialog.hidden = false;
+        openMemoryDialog();
         heartBurst(3);
-        dialogClose.focus();
     });
 });
 
@@ -355,7 +361,40 @@ memoryNextButton.addEventListener("click", function () {
 });
 
 function closeMemoryDialog() {
-    memoryDialog.hidden = true;
+    if (memoryDialog.hidden || memoryDialog.classList.contains("closing")) {
+        return;
+    }
+
+    memoryDialog.classList.add("closing");
+    memoryDialogCloseTimer = setTimeout(function () {
+        memoryDialog.hidden = true;
+        memoryDialog.classList.remove("closing");
+        memoryDialogCloseTimer = null;
+
+        if (memoryDialogOpener && document.contains(memoryDialogOpener)) {
+            memoryDialogOpener.focus();
+        }
+        memoryDialogOpener = null;
+    }, 180);
+}
+
+function openMemoryDialog() {
+    clearTimeout(memoryDialogCloseTimer);
+    memoryDialogCloseTimer = null;
+    memoryDialog.classList.remove("closing");
+    memoryDialogOpener = document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
+    memoryDialog.hidden = false;
+    dialogClose.focus();
+}
+
+function showLittleMessage(title, message) {
+    memoryDialogPanel.style.removeProperty("--memory-image");
+    memoryDialogTitle.textContent = title;
+    memoryDialogText.textContent = message;
+    memoryNextButton.hidden = true;
+    openMemoryDialog();
 }
 
 dialogClose.addEventListener("click", closeMemoryDialog);
@@ -368,6 +407,55 @@ memoryDialog.addEventListener("click", function (event) {
 document.addEventListener("keydown", function (event) {
     if (event.key === "Escape" && !memoryDialog.hidden) {
         closeMemoryDialog();
+    }
+});
+
+gardenFlowers.forEach(function (flower) {
+    flower.addEventListener("click", function () {
+        const message = flower.dataset.flowerMessage;
+        flower.classList.add("bloomed");
+        gardenResponse.textContent = message;
+        showLittleMessage(flower.dataset.flowerTitle, message);
+    });
+});
+
+hiddenMessageTriggers.forEach(function (trigger) {
+    trigger.addEventListener("click", function () {
+        showLittleMessage(trigger.dataset.hiddenTitle, trigger.dataset.hiddenMessage);
+    });
+});
+
+let easterEggTapCount = 0;
+let easterEggResetTimer = null;
+let easterEggRevealed = false;
+
+function tapEasterEggHeart() {
+    if (easterEggRevealed) {
+        return;
+    }
+
+    easterEggTapCount += 1;
+    clearTimeout(easterEggResetTimer);
+
+    if (easterEggTapCount === 5) {
+        easterEggRevealed = true;
+        showLittleMessage(
+            "You found the secret",
+            "In case you ever forget: you make life a little brighter just by being in it. Thank you for being you. ❤️"
+        );
+        return;
+    }
+
+    easterEggResetTimer = setTimeout(function () {
+        easterEggTapCount = 0;
+    }, 3000);
+}
+
+easterEggHeart.addEventListener("click", tapEasterEggHeart);
+easterEggHeart.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        tapEasterEggHeart();
     }
 });
 
